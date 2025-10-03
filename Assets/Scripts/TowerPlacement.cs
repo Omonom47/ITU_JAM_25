@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using Model;
 
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     [SerializeField] private GameObject towerPrefab;
     private InputSystem_Actions _inputSystemActions;
+    private Model.Grid _grid;
 
     private Vector2 _mousePosition;
 
@@ -33,7 +34,10 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             mouseWorldPos.z = 0;
             Instantiate(towerPrefab, mouseWorldPos, Quaternion.identity);
         }
-        
     }
 
+    public void SetGrid(Model.Grid grid)
+    {
+        _grid = grid;
+    }
 }
