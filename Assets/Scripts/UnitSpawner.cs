@@ -34,13 +34,15 @@ public class UnitSpawner : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        SpawnUnit();
     }
 
-    private void SpawnUnit()
+    public void SpawnPlayerUnit() => SpawnUnit(Team.Player);
+    public void SpawnEnemyUnit() => SpawnUnit(Team.Enemy);
+    
+    private void SpawnUnit(Team team)
     {
         var unit = 
-            Instantiate(_unit, _grid.GetStartingCheckPoint(Team.Player).ToVector2(), Quaternion.identity);
-        unit.SetCheckPoints(_grid.GetCheckPoints(Team.Player).Select(cell => cell.ToVector2()).ToArray());
+            Instantiate(_unit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
+        unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
     }
 }
