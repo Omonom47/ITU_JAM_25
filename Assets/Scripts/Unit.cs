@@ -42,4 +42,9 @@ public class Unit : MonoBehaviour
             }
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        Destroy(this.gameObject);
+    }
 }
