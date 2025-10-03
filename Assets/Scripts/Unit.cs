@@ -13,11 +13,15 @@ public class Unit : MonoBehaviour
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
     {
+        if (checkPoints.Length == 0) throw new Exception("No checkpoints provided.");
+        
         _checkPoints = new Queue<Vector2>();
         foreach (var checkPoint in checkPoints)
         {
             _checkPoints.Enqueue(checkPoint);
         }
+
+        _target = _checkPoints.Dequeue();
     }
 
     private void Update()
@@ -26,7 +30,7 @@ public class Unit : MonoBehaviour
         
         transform.position =
             Vector2.MoveTowards(transform.position, _target, Time.deltaTime * 5f);
-        if (Vector2.Distance(transform.position, _target) < 1f)
+        if (Vector2.Distance(transform.position, _target) < .01f)
         {
             if (_checkPoints.Count == 0)
             {

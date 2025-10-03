@@ -16,14 +16,6 @@ namespace Model
 
     public class Grid
     {
-        private int _xSize, _ySize;
-        private int _cellSize = 16;
-        public Grid(int sizeX, int sizeY)
-        {
-            _xSize = sizeX;
-            _ySize = sizeY;
-        }
-        
         private readonly List<Cell> _checkPoints = new();
         private readonly List<Cell> _towerPlacements = new();
         public void AddCheckPoint(Cell cell) => _checkPoints.Add(cell);

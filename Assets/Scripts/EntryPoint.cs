@@ -7,13 +7,17 @@ public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private UnitSpawner _unitSpawner;
     [SerializeField] private TowerPlacement _towerPlacement;
+    [SerializeField] private Transform[] _checkPoints;
+    
+    
     private void Start()
     {
-        var grid = new Grid(5, 5);
-        grid.AddCheckPoint(new Cell{X = 0, Y = 0});
-        grid.AddCheckPoint(new Cell{X = 1, Y = 0});
-        grid.AddCheckPoint(new Cell{X = 1, Y = 1});
-        grid.AddCheckPoint(new Cell{X = 0, Y = 1});
+        var grid = new Grid();
+        foreach (var checkPoint in _checkPoints)
+        {
+            Vector2 position = checkPoint.position;
+            grid.AddCheckPoint(position.ToCell());
+        }
         _unitSpawner.SetGrid(grid);
         _towerPlacement.SetGrid(grid);
     }
