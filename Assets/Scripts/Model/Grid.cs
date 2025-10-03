@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 
 namespace Model
 {
@@ -28,5 +27,10 @@ namespace Model
             team == Team.Player
                 ? _checkPoints.ToArray()
                 : _checkPoints?.AsEnumerable().Reverse().ToArray();
+
+        public Cell GetStartingCheckPoint(Team team)
+        {
+            return team == Team.Player ? _checkPoints[0] : _checkPoints[^1];
+        }
     }
 }
