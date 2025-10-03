@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Model;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,5 +41,6 @@ public class UnitSpawner : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         var unit = 
             Instantiate(_unit, _grid.GetStartingCheckPoint(Team.Player).ToVector2(), Quaternion.identity);
+        unit.SetCheckPoints(_grid.GetCheckPoints(Team.Player).Select(cell => cell.ToVector2()).ToArray());
     }
 }
