@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    public enum TurnPhase
+    {
+        Prep,Simulation
+    }
     [SerializeField] private float _timeBetweenUnits = 0.5f;
     
     private bool _playerReady = false;
@@ -16,6 +20,9 @@ public class TurnManager : MonoBehaviour
 
     private readonly Queue<Unit> _playerWave = new();
     private readonly Queue<Unit> _enemyWave = new();
+
+    private int _turnNumber = 0;
+    public TurnPhase Phase { get; private set; }
     private void OnEnable()
     {
         UnitSpawner.onUnitSpawned += RegisterUnit;
@@ -69,11 +76,14 @@ public class TurnManager : MonoBehaviour
     private void StartTurn()
     {
         StartCoroutine(ReleaseUnits());
+        Phase = TurnPhase.Simulation;
     }
     
     private void NextTurn()
     {
         StopAllCoroutines();
+        _turnNumber++;
+        Phase = TurnPhase.Prep;
     }
     
     private void RegisterUnit(Unit toRegister, Team team)

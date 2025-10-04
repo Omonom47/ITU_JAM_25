@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a0647b878d9829042a26073fd4041f70
+guid: 0e62b0e28ba50d04388feaa94535e272
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5433780587731133769
-    second: k_k_tower_big 1_0
+      213: 7873079072695025418
+    second: k_k_knight_icon_blue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: k_k_tower_big 1_0
+      name: k_k_knight_icon_blue_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 24
-        height: 38
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 945a027b7aaa86b40800000000000000
-      internalID: 5433780587731133769
+      spriteID: a0f7c8804bbc24d60800000000000000
+      internalID: 7873079072695025418
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      k_k_tower_big 1_0: 5433780587731133769
+      k_k_knight_icon_blue_0: 7873079072695025418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

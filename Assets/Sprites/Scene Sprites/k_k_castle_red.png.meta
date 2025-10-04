@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5ebf0278ad0caa7498c19209c6cf1683
+guid: 0098c56716710f343ba80ad0dd0f4c72
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4804446361586417100
-    second: map_0
+      213: -4628534434382810798
+    second: k_k_castle_red_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: map_0
+      name: k_k_castle_red_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1530
-        height: 956
+        width: 64
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ccdb6c4c282dca240800000000000000
-      internalID: 4804446361586417100
+      spriteID: 251f2f7747424cfb0800000000000000
+      internalID: -4628534434382810798
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      map_0: 4804446361586417100
+      k_k_castle_red_0: -4628534434382810798
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

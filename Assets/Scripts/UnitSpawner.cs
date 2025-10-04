@@ -13,6 +13,8 @@ public class UnitSpawner : MonoBehaviour
     
     [SerializeField] private Unit _unit;
 
+    [SerializeField] private Sprite _enemySprite;
+
     public void SetGrid(Grid grid)
     {
         _grid = grid;
@@ -27,6 +29,10 @@ public class UnitSpawner : MonoBehaviour
             Instantiate(_unit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
         unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
         unit.Team = team;
+        if (unit.Team == Team.Enemy)
+        {
+            unit.gameObject.GetComponent<SpriteRenderer>().sprite = _enemySprite;
+        }
         unit.gameObject.SetActive(false);
         onUnitSpawned?.Invoke(unit, team);
     }
