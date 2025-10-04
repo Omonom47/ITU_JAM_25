@@ -12,6 +12,11 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private float _speed = 10f;
 
+    public delegate void OnFinished(Team team);
+    public static OnFinished onFinished;
+    
+    
+
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
     {
@@ -37,6 +42,8 @@ public class Unit : MonoBehaviour
             if (_checkPoints.Count == 0)
             {
                 _isFinished = true;
+                onFinished?.Invoke(_team);
+                Destroy(gameObject);
             }
             else
             {
@@ -49,7 +56,6 @@ public class Unit : MonoBehaviour
     {
         _team = team;
     }
-
     public void TakeDamage(int damage)
     {
         Destroy(this.gameObject);

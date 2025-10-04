@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Model;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Grid = Model.Grid;
 
 public class UnitSpawner : MonoBehaviour
