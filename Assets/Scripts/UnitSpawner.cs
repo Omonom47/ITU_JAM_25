@@ -27,6 +27,7 @@ public class UnitSpawner : MonoBehaviour
             Instantiate(_unit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
         unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
         unit.Team = team;
+        unit.gameObject.SetActive(false);
         onUnitSpawned?.Invoke(unit, team);
     }
 }

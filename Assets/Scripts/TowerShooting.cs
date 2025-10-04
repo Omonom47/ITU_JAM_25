@@ -25,7 +25,7 @@ public class TowerShooting: MonoBehaviour
         {
             Vector3 selfPosition = transform.position;
 
-            var units = EntryPoint.GetOpposingUnits(_team);
+            var units = TurnManager.GetOpposingUnits(_team);
             
             foreach (var unit in units)
             {

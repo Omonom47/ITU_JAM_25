@@ -21,9 +21,9 @@ public class Castle : MonoBehaviour
         Unit.onFinished -= DamageCastle;
     }
 
-    private void DamageCastle(Team team)
+    private void DamageCastle(Unit attacker)
     {
-        if (team != _team)
+        if (attacker.Team != _team)
         {
             _health--;
         }

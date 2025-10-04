@@ -11,8 +11,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private TowerPlacement _towerPlacement;
     [SerializeField] private Transform[] _checkPoints;
 
-    private static readonly List<Unit> _playerUnits = new();
-    private static readonly List<Unit> _enemyUnits = new();
+    
 
     private void Start()
     {
@@ -29,15 +28,11 @@ public class EntryPoint : MonoBehaviour
     private void OnEnable()
     {
         Castle.onGameOver += RestartGame;
-        UnitSpawner.onUnitSpawned += RegisterUnit;
-        Unit.onDeath += DeregisterUnit;
     }
 
     private void OnDisable()
     {
         Castle.onGameOver -= RestartGame;
-        UnitSpawner.onUnitSpawned -= RegisterUnit;
-        Unit.onDeath -= DeregisterUnit;
     }
 
     private void RestartGame()
@@ -45,30 +40,5 @@ public class EntryPoint : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void RegisterUnit(Unit toRegister, Team team)
-    {
-        if (team == Team.Player)
-            _playerUnits.Add(toRegister);
-        else
-            _enemyUnits.Add(toRegister);
-    }
-
-    private void DeregisterUnit(Unit toDeregister)
-    {
-        if (toDeregister.Team == Team.Player)
-            _playerUnits.Remove(toDeregister);
-        else
-            _enemyUnits.Remove(toDeregister);
-        Destroy(toDeregister.gameObject);
-    }
-
-    public static List<Unit> GetOpposingUnits(Team team)
-    {
-        if (team == Team.Player)
-            return _enemyUnits;
-        else
-            return _playerUnits;
-        
-
-    }
+    
 }

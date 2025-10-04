@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [SerializeField] private int _health = 1;
 
-    public delegate void OnFinished(Team team);
+    public delegate void OnFinished(Unit finished);
     public static OnFinished onFinished;
 
     public delegate void OnDeath(Unit dying);
@@ -44,7 +44,7 @@ public class Unit : MonoBehaviour
             if (_checkPoints.Count == 0)
             {
                 _isFinished = true;
-                onFinished?.Invoke(Team);
+                onFinished?.Invoke(this);
             }
             else
             {
