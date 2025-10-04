@@ -10,6 +10,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private Model.Grid _grid;
 
     private Vector2 _mousePosition;
+    private bool _canPlace;
 
     private void OnEnable()
     {
@@ -29,18 +30,24 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void OnAttack(InputAction.CallbackContext context)
     {
         
-        if (context.action.WasPressedThisFrame())
+        if (context.action.WasPressedThisFrame() && _canPlace)
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(_mousePosition);
             var cell = mouseWorldPos.ToCell();
             _grid.PlaceTower(cell);
             
             Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
+            _canPlace = false;
         }
     }
 
     public void SetGrid(Model.Grid grid)
     {
         _grid = grid;
+    }
+
+    public void EnableTowerPlacement()
+    {
+        _canPlace = true;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Model;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -7,6 +8,7 @@ public class Unit : MonoBehaviour
     private Queue<Vector2> _checkPoints;
     private Vector2 _target;
     private bool _isFinished;
+    private Team _team;
 
     [SerializeField] private float _speed = 10f;
 
@@ -41,6 +43,11 @@ public class Unit : MonoBehaviour
                 _target = _checkPoints.Dequeue();
             }
         }
+    }
+
+    public void SetTeam(Team team)
+    {
+        _team = team;
     }
 
     public void TakeDamage(int damage)

@@ -1,4 +1,5 @@
 using System;
+using Model;
 using UnityEngine;
 
 public class TowerShooting: MonoBehaviour
@@ -9,6 +10,7 @@ public class TowerShooting: MonoBehaviour
 
     private Unit _currentTarget;
     private float _cooldownLeft;
+    private Team _team;
 
     private void Update()
     {
