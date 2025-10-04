@@ -15,6 +15,11 @@ public class Castle : MonoBehaviour
     {
         Unit.onFinished += DamageCastle;
     }
+    
+    private void OnDisable()
+    {
+        Unit.onFinished -= DamageCastle;
+    }
 
     private void DamageCastle(Team team)
     {

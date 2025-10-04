@@ -8,14 +8,16 @@ public class Unit : MonoBehaviour
     private Queue<Vector2> _checkPoints;
     private Vector2 _target;
     private bool _isFinished;
-    private Team _team;
+    public Team Team { get; set; }
 
     [SerializeField] private float _speed = 10f;
+    [SerializeField] private int _health = 1;
 
     public delegate void OnFinished(Team team);
     public static OnFinished onFinished;
-    
-    
+
+    public delegate void OnDeath(Unit dying);
+    public static OnDeath onDeath;
 
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
@@ -42,8 +44,7 @@ public class Unit : MonoBehaviour
             if (_checkPoints.Count == 0)
             {
                 _isFinished = true;
-                onFinished?.Invoke(_team);
-                Destroy(gameObject);
+                onFinished?.Invoke(Team);
             }
             else
             {
@@ -51,13 +52,12 @@ public class Unit : MonoBehaviour
             }
         }
     }
-
-    public void SetTeam(Team team)
-    {
-        _team = team;
-    }
     public void TakeDamage(int damage)
     {
-        Destroy(this.gameObject);
+        _health -= damage;
+        if (_health <= 0)
+        {
+            onDeath?.Invoke(this);
+        }
     }
 }

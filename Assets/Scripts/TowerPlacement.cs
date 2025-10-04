@@ -5,7 +5,8 @@ using Model;
 
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
-    [SerializeField] private GameObject towerPrefab;
+    [SerializeField] private TowerShooting towerPrefab;
+    
     private InputSystem_Actions _inputSystemActions;
     private Model.Grid _grid;
 
@@ -36,7 +37,8 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             var cell = mouseWorldPos.ToCell();
             _grid.PlaceTower(cell);
             
-            Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
+            var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
+            tower.SetTeam(Team.Player);
             _canPlace = false;
         }
     }

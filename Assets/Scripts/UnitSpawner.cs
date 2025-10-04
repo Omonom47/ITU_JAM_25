@@ -7,6 +7,9 @@ using Grid = Model.Grid;
 public class UnitSpawner : MonoBehaviour
 {
     private Grid _grid;
+
+    public delegate void OnUnitSpawned(Unit spawned, Team team);
+    public static OnUnitSpawned onUnitSpawned;
     
     [SerializeField] private Unit _unit;
 
@@ -23,6 +26,7 @@ public class UnitSpawner : MonoBehaviour
         var unit = 
             Instantiate(_unit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
         unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
-        unit.SetTeam(team);
+        unit.Team = team;
+        onUnitSpawned?.Invoke(unit, team);
     }
 }

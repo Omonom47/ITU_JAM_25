@@ -5,12 +5,17 @@ using UnityEngine;
 public class TowerShooting: MonoBehaviour
 {
     [SerializeField] private float _attackRange = 5;
-    [SerializeField] private LayerMask _whatToShoot;
     [SerializeField] private float _shotCooldown = 0.5f;
 
     private Unit _currentTarget;
     private float _cooldownLeft;
     private Team _team;
+    private float _atkRangeSqr;
+
+    private void Start()
+    {
+        _atkRangeSqr = _attackRange * _attackRange;
+    }
 
     private void Update()
     {
@@ -19,19 +24,18 @@ public class TowerShooting: MonoBehaviour
         if (_currentTarget is null)
         {
             Vector3 selfPosition = transform.position;
-            var units = Physics2D.OverlapCircleAll(selfPosition, _attackRange,_whatToShoot);
-            var minDist = -1.0f;
-            Collider2D cur = null;
+
+            var units = EntryPoint.GetOpposingUnits(_team);
+            
             foreach (var unit in units)
             {
-                var dist = (unit.transform.position - selfPosition).sqrMagnitude;
-                if (dist <= minDist || cur is null)
+                var dist = (selfPosition - unit.transform.position).sqrMagnitude;
+                if (dist <= _atkRangeSqr)
                 {
-                    minDist = dist;
-                    cur = unit;
+                    _currentTarget = unit;
+                    break;
                 }
             }
-            _currentTarget =  cur?.gameObject.GetComponent<Unit>();
         }
         
         if (_currentTarget is not null && _cooldownLeft <= 0)
@@ -41,5 +45,7 @@ public class TowerShooting: MonoBehaviour
             _cooldownLeft = _shotCooldown;
         }
     }
+
+    public void SetTeam(Team team) => _team = team;
 
 }
