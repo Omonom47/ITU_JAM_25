@@ -45,7 +45,7 @@ public class TowerShooting: MonoBehaviour
             _currentTarget.TakeDamage(1);
             _currentTarget = null;
             _cooldownLeft = _shotCooldown;
-            _audio.Play();
+            _audio.PlayOneShot(_audio.clip);
         }
     }
 

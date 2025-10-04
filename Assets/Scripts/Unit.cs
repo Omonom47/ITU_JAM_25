@@ -64,7 +64,7 @@ public class Unit : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_audioSource.clip);
             onDeath?.Invoke(this);
         }
     }
