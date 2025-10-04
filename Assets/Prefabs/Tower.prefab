@@ -77,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -642642473
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7316229441688303391, guid: d55e86f3438aa1644920c6242347cc63, type: 3}
+  m_Sprite: {fileID: 3139719777506843835, guid: f64f8c9ddf573e2408beeb372c47f745, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerShooting
   _attackRange: 2
-  _whatToShoot:
-    serializedVersion: 2
-    m_Bits: 64
   _shotCooldown: 0.5
