@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Grid = Model.Grid;
 
 public class EntryPoint : MonoBehaviour
@@ -20,5 +21,15 @@ public class EntryPoint : MonoBehaviour
         }
         _unitSpawner.SetGrid(grid);
         _towerPlacement.SetGrid(grid);
+    }
+
+    private void OnEnable()
+    {
+        Castle.onGameOver += RestartGame;
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
