@@ -11,10 +11,12 @@ public class TowerShooting: MonoBehaviour
     private float _cooldownLeft;
     private Team _team;
     private float _atkRangeSqr;
+    private AudioSource _audio;
 
     private void Start()
     {
         _atkRangeSqr = _attackRange * _attackRange;
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -43,6 +45,7 @@ public class TowerShooting: MonoBehaviour
             _currentTarget.TakeDamage(1);
             _currentTarget = null;
             _cooldownLeft = _shotCooldown;
+            _audio.Play();
         }
     }
 

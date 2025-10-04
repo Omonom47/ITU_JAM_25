@@ -13,11 +13,18 @@ public class Unit : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [SerializeField] private int _health = 1;
 
+    private AudioSource _audioSource;
+    
     public delegate void OnFinished(Unit finished);
     public static OnFinished onFinished;
 
     public delegate void OnDeath(Unit dying);
     public static OnDeath onDeath;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
@@ -57,6 +64,7 @@ public class Unit : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
+            _audioSource.Play();
             onDeath?.Invoke(this);
         }
     }

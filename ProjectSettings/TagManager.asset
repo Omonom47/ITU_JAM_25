@@ -53,5 +53,8 @@ TagManager:
   - name: inWorldUI
     uniqueID: 4250821167
     locked: 0
+  - name: castles
+    uniqueID: 3077813647
+    locked: 0
   m_RenderingLayers:
   - Default
