@@ -6,6 +6,7 @@ using Model;
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     [SerializeField] private TowerShooting towerPrefab;
+    [SerializeField] private Sprite _enemyTowerSprite;
     
     private InputSystem_Actions _inputSystemActions;
     private Model.Grid _grid;
@@ -18,11 +19,13 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         _inputSystemActions = new InputSystem_Actions();
         _inputSystemActions.Player.SetCallbacks(this);
         _inputSystemActions.Player.Enable();
+        EnemyController.placedTower += EnemyPlaceTower;
     }
     
     private void OnDisable()
     {
         _inputSystemActions.Player.Disable();
+        EnemyController.placedTower -= EnemyPlaceTower;
     }
 
     public void OnLook(InputAction.CallbackContext context) => 
@@ -51,5 +54,15 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void EnableTowerPlacement()
     {
         _canPlace = true;
+    }
+    
+    public void EnemyPlaceTower(Vector2 pos)
+    {
+        var cell = pos.ToCell();
+        _grid.PlaceTower(cell);
+            
+        var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
+        tower.GetComponent<SpriteRenderer>().sprite = _enemyTowerSprite;
+        tower.SetTeam(Team.Enemy);
     }
 }

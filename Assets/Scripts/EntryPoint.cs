@@ -9,11 +9,11 @@ public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private UnitSpawner _unitSpawner;
     [SerializeField] private TowerPlacement _towerPlacement;
+    [SerializeField] private TurnManager _turnManager;
     [SerializeField] private Transform[] _checkPoints;
 
-    
 
-    private void Start()
+    private void Awake()
     {
         var grid = new Grid();
         foreach (var checkPoint in _checkPoints)
@@ -23,6 +23,11 @@ public class EntryPoint : MonoBehaviour
         }
         _unitSpawner.SetGrid(grid);
         _towerPlacement.SetGrid(grid);
+    }
+
+    private void Start()
+    {
+        _turnManager.FirstTurn();
     }
 
     private void OnEnable()

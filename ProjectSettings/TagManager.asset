@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PathCheckpoint
   - Unit
+  - EntryPoint
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: towers
     uniqueID: 3652324823
+    locked: 0
+  - name: inWorldUI
+    uniqueID: 4250821167
     locked: 0
   m_RenderingLayers:
   - Default

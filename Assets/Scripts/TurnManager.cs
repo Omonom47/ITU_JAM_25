@@ -14,6 +14,7 @@ public class TurnManager : MonoBehaviour
     
     private bool _playerReady = false;
     private bool _enemyReady = false;
+    private EnemyController _enemyController;
     
     private static readonly List<Unit> _playerUnits = new();
     private static readonly List<Unit> _enemyUnits = new();
@@ -21,7 +22,7 @@ public class TurnManager : MonoBehaviour
     private readonly Queue<Unit> _playerWave = new();
     private readonly Queue<Unit> _enemyWave = new();
 
-    private int _turnNumber = 0;
+    public int TurnNumber { get; private set; }
     public TurnPhase Phase { get; private set; }
     private void OnEnable()
     {
@@ -39,14 +40,20 @@ public class TurnManager : MonoBehaviour
     
     public void RegisterPlayerReady()
     {
-        _playerReady = true;
-        CheckIfBothReady();
+        if (Phase == TurnPhase.Prep)
+        {
+            _playerReady = true;
+            CheckIfBothReady();
+        }
     }
 
     public void RegisterEnemyReady()
     {
-        _enemyReady = true;
-        CheckIfBothReady();
+        if (Phase == TurnPhase.Prep)
+        {
+            _enemyReady = true;
+            CheckIfBothReady();
+        }
     }
 
     private IEnumerator ReleaseUnits()
@@ -73,6 +80,12 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void FirstTurn()
+    {
+        Phase = TurnPhase.Prep;
+        _enemyController.StartEnemyTurn();
+    }
+    
     private void StartTurn()
     {
         StartCoroutine(ReleaseUnits());
@@ -82,8 +95,9 @@ public class TurnManager : MonoBehaviour
     private void NextTurn()
     {
         StopAllCoroutines();
-        _turnNumber++;
+        TurnNumber++;
         Phase = TurnPhase.Prep;
+        _enemyController.StartEnemyTurn();
     }
     
     private void RegisterUnit(Unit toRegister, Team team)
@@ -121,6 +135,9 @@ public class TurnManager : MonoBehaviour
             return _playerUnits;
         
     }
-    
-    
+
+    public void SetEnemyController(EnemyController ec)
+    {
+        _enemyController = ec;
+    }
 }
