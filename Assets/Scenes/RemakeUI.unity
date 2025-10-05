@@ -1500,6 +1500,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 524369354}
     m_Modifications:
+    - target: {fileID: 1174808276029260478, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174808276029260478, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174808276029260478, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 55.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1683708740503239393, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1584,6 +1596,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 2428902575862795725, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c2502d2c7e7de3a47962a4a517f9d33b, type: 3}
+    - target: {fileID: 2467114393546303660, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467114393546303660, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 939242268124514274, guid: c676766d629ccd845a49bad7943bfb30, type: 3}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1597,13 +1621,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 323930712}
     - target: {fileID: 3928773040787933747, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928773040787933747, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928773040787933747, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: -57.8
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1337559763}
+    - target: {fileID: 5293705259144201645, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 847d9bd93baf50142a7f3a197bc42b42, type: 3}
     - target: {fileID: 6813126083319135835, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5
@@ -1613,11 +1649,24 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6813126083319135835, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -65
+      propertyPath: m_SizeDelta.x
+      value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 6813126083319135835, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813126083319135835, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797229967289605061, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5769364151863447667, guid: 76e85938d86c8d743aa20c0301d76b2b, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3360025240027393930, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
