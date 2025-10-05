@@ -8,16 +8,20 @@ public class TurnManager : MonoBehaviour
 {
     public enum TurnPhase
     {
-        Prep,Simulation
+        Prep,
+        Simulation
     }
+
     [SerializeField] private float _timeBetweenUnits = 0.5f;
     [SerializeField] private IntVariable _playerMoney;
     [SerializeField] private IntVariable _enemyMoney;
+    [SerializeField] private IntVariable _playerUnitsQueuedUp;
+    [SerializeField] private IntVariable _enemyUnitsQueuedUp;
     
     private bool _playerReady = false;
     private bool _enemyReady = false;
     private EnemyController _enemyController;
-    
+
     private static readonly List<Unit> _playerUnits = new();
     private static readonly List<Unit> _enemyUnits = new();
 
@@ -26,6 +30,7 @@ public class TurnManager : MonoBehaviour
 
     public int TurnNumber { get; private set; }
     public TurnPhase Phase { get; private set; }
+
     private void OnEnable()
     {
         UnitSpawner.onUnitSpawned += RegisterUnit;
@@ -39,7 +44,7 @@ public class TurnManager : MonoBehaviour
         Unit.onDeath -= DeregisterUnit;
         Unit.onFinished -= DeregisterUnit;
     }
-    
+
     public void RegisterPlayerReady()
     {
         if (Phase == TurnPhase.Prep)
@@ -63,16 +68,20 @@ public class TurnManager : MonoBehaviour
         if (_enemyWave.TryDequeue(out var eUnit))
         {
             eUnit.gameObject.SetActive(true);
+            _enemyUnitsQueuedUp.Value--;
         }
 
 
         if (_playerWave.TryDequeue(out var pUnit))
         {
             pUnit.gameObject.SetActive(true);
+            _playerUnitsQueuedUp.Value--;
         }
+
         yield return new WaitForSeconds(_timeBetweenUnits);
         StartCoroutine(ReleaseUnits());
-    } 
+    }
+
     private void CheckIfBothReady()
     {
         if (_playerReady && _enemyReady)
@@ -87,13 +96,13 @@ public class TurnManager : MonoBehaviour
         Phase = TurnPhase.Prep;
         _enemyController.StartEnemyTurn();
     }
-    
+
     private void StartTurn()
     {
         StartCoroutine(ReleaseUnits());
         Phase = TurnPhase.Simulation;
     }
-    
+
     private void NextTurn()
     {
         StopAllCoroutines();
@@ -103,41 +112,46 @@ public class TurnManager : MonoBehaviour
         _enemyMoney.Value += 100;
         _enemyController.StartEnemyTurn();
     }
-    
+
     private void RegisterUnit(Unit toRegister, Team team)
     {
         if (team == Team.Player)
         {
             _playerUnits.Add(toRegister);
             _playerWave.Enqueue(toRegister);
+            _playerUnitsQueuedUp.Value++;
         }
         else
         {
             _enemyUnits.Add(toRegister);
             _enemyWave.Enqueue(toRegister);
+            _enemyUnitsQueuedUp.Value++;
         }
     }
 
     private void DeregisterUnit(Unit toDeregister)
     {
         if (toDeregister.Team == Team.Player)
+        {
             _playerUnits.Remove(toDeregister);
+        }
         else
+        {
             _enemyUnits.Remove(toDeregister);
+        }
         Destroy(toDeregister.gameObject);
         if (_playerUnits.Count == 0 && _enemyUnits.Count == 0)
         {
             NextTurn();
         }
     }
-    
+
     public static List<Unit> GetOpposingUnits(Team team)
     {
         if (team == Team.Player)
             return _enemyUnits;
         else
             return _playerUnits;
-        
     }
 
     public void SetEnemyController(EnemyController ec)

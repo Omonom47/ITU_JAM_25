@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         var ret = new EnemyTurn();
         var turnNum = _turnManager.TurnNumber;
-        var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 0;
+        var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 1;
         if (shouldAttack)
         {
             ret.NumUnitsToSpawn =
@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
             ret.NumUnitsToSpawn = 0;
         }
 
-        var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 1;
+        var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 0;
 
         if (shouldPlaceTowers)
         {
