@@ -34,11 +34,6 @@ public class TurnManager : MonoBehaviour
     public int TurnNumber { get; private set; }
     public TurnPhase Phase { get; private set; }
 
-    private void Start()
-    {
-        _audio = GetComponent<AudioSource>();
-    }
-
     private void OnEnable()
     {
         UnitSpawner.onUnitSpawned += RegisterUnit;
@@ -56,6 +51,7 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         RunTurnTimer();
+        _audio = GetComponent<AudioSource>();
     }
 
     private async void RunTurnTimer()
