@@ -69,8 +69,13 @@ public class Unit : MonoBehaviour
 
     private AudioSource PlayClipAt(AudioClip clip, Vector3 position, float pitch, float volume)
     {
-        var tempGo = new GameObject("tempAudio");
-        tempGo.transform.position = position;
+        var tempGo = new GameObject("tempAudio")
+        {
+            transform =
+            {
+                position = position
+            }
+        };
         var aSource = tempGo.AddComponent<AudioSource>();
         aSource.clip = clip;
         aSource.pitch = pitch;
