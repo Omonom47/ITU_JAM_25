@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject _cursorObject;
     [SerializeField] private Button _unitButton;
     [SerializeField] private Button _readyButton;
+    [SerializeField] private int _startAttackingEveryTurn = 6;
+    [SerializeField] private int _startPlacingTowersEveryTurn = 9;
     private TurnManager _turnManager;
 
     public delegate void OnPlacedTower(Vector2 pos);
@@ -39,12 +41,29 @@ public class EnemyController : MonoBehaviour
     {
         var ret = new EnemyTurn();
         var turnNum = _turnManager.TurnNumber;
-        ret.NumUnitsToSpawn = 
-            Random.Range(turnNum * _unitPlacementMultiplier,
-                turnNum * turnNum * _unitPlacementMultiplier);
+        var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 0;
+        if (shouldAttack)
+        {
+            ret.NumUnitsToSpawn = 
+                Random.Range(turnNum * _unitPlacementMultiplier,
+                    turnNum * turnNum * _unitPlacementMultiplier) + 2;
+        }
+        else
+        {
+            ret.NumUnitsToSpawn = 0;
+        }
 
-        ret.NumTowersToPlace = Random.Range(turnNum + _towerPlacementModifier,
-            turnNum + _towerPlacementModifier * 2);
+        var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 1;
+
+        if (shouldPlaceTowers)
+        {
+            ret.NumTowersToPlace = Random.Range(turnNum + _towerPlacementModifier,
+                turnNum + _towerPlacementModifier * 2);
+        }
+        else
+        {
+            ret.NumTowersToPlace = 0;
+        }
 
         return ret;
     }
