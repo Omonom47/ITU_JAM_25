@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Model;
+using ScriptableObjects;
 using UnityEngine;
 using Grid = Model.Grid;
 
@@ -10,6 +11,8 @@ public class UnitSpawner : MonoBehaviour
 
     public delegate void OnUnitSpawned(Unit spawned, Team team);
     public static OnUnitSpawned onUnitSpawned;
+
+    [SerializeField] private Shop _shop;
     
     [SerializeField] private Unit _unit;
 
@@ -20,6 +23,18 @@ public class UnitSpawner : MonoBehaviour
         _grid = grid;
     }
 
+    public void BuyPlayerUnit() => BuyUnit(Team.Player);
+
+    public void BuyEnemyUnit() => BuyUnit(Team.Enemy);
+
+    private void BuyUnit(Team team)
+    {
+        if (_shop.TryBuyUnit(team))
+        {
+            SpawnUnit(team);
+        }
+    }
+    
     public void SpawnPlayerUnit() => SpawnUnit(Team.Player);
     public void SpawnEnemyUnit() => SpawnUnit(Team.Enemy);
     
