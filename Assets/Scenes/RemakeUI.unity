@@ -1441,16 +1441,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8066038, g: 0.66323614, b: 0.43373978, a: 0.7058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 353237301417136435, guid: a668f5cf564604f49b931b4003cfe2e6, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1958,6 +1958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 524369354}
     m_Modifications:
+    - target: {fileID: 357212848689066695, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1174808276029260478, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -2118,6 +2122,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -3193838514429795120, guid: 3e96d1b1341e79048b7d78eeb43d20ec, type: 3}
+    - target: {fileID: 2862963231157170840, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2528,16 +2536,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8066038, g: 0.66323614, b: 0.43373978, a: 0.7058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 353237301417136435, guid: a668f5cf564604f49b931b4003cfe2e6, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2690,6 +2698,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 524369354}
     m_Modifications:
+    - target: {fileID: 357212848689066695, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1174808276029260478, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 55.799988
@@ -2829,6 +2841,14 @@ PrefabInstance:
     - target: {fileID: 2272481560262243542, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428902575862795725, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862963231157170840, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
