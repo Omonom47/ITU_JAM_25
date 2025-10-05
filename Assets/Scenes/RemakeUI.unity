@@ -958,8 +958,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cc5cfc196846909a535ad621ee04e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSpawner
+  _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
   _unit: {fileID: 6097926426704962104, guid: e6a66ba5b05702b40a2001c5830f0638, type: 3}
   _enemySprite: {fileID: 219734635211318249, guid: 172636253ce30a94ca69546634e6aeed, type: 3}
+--- !u!114 &1243401215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 1545968782}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1298447641
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,8 +1005,10 @@ MonoBehaviour:
   _towerPlacementModifier: 2
   _cursorSpeed: 1
   _cursorObject: {fileID: 142727109}
-  _unitButton: {fileID: 0}
+  _unitButton: {fileID: 1243401215}
   _readyButton: {fileID: 52922224}
+  _startAttackingEveryTurn: 6
+  _startPlacingTowersEveryTurn: 9
 --- !u!4 &1298447643
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,7 +1285,7 @@ PrefabInstance:
       objectReference: {fileID: 1206992698}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnEnemyUnit
+      value: BuyEnemyUnit
       objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1574,6 +1588,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1206992698}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyPlayerUnit
+      objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
