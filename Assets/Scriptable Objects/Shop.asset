@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjects.Shop
   _unitCost: 10
-  _towerCost: 25
+  _towerCost: 30
   _playerMoney: {fileID: 11400000, guid: 6ba0ad83584bffb4f865e716f3181e16, type: 2}
   _enemyMoney: {fileID: 11400000, guid: 71a252a2f01b16d49b53cf06ad59f58a, type: 2}

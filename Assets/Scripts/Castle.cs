@@ -5,7 +5,7 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     [SerializeField] private Team _team;
-    [SerializeField] private int _health = 20;
+    [SerializeField] private IntVariable _health;
 
     public delegate void OnGameOver();
 
@@ -15,7 +15,7 @@ public class Castle : MonoBehaviour
     {
         Unit.onFinished += DamageCastle;
     }
-    
+
     private void OnDisable()
     {
         Unit.onFinished -= DamageCastle;
@@ -25,14 +25,12 @@ public class Castle : MonoBehaviour
     {
         if (attacker.Team != _team)
         {
-            _health--;
+            _health.Value--;
         }
 
-        if (_health<= 0)
+        if (_health.Value <= 0)
         {
             onGameOver?.Invoke();
         }
     }
-    
-    
 }
