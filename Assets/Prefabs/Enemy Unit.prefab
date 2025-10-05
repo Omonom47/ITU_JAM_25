@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6097926426704962104}
   - component: {fileID: 3410828369371743399}
   m_Layer: 6
-  m_Name: Unit
+  m_Name: Enemy Unit
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 561572603
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -908495185701150729, guid: 8a78955a37056464daf9512f9f23d3e0, type: 3}
+  m_Sprite: {fileID: -5494635685326871693, guid: e15c878448daf5d469a8c926c7abc920, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,8 +107,6 @@ MonoBehaviour:
   _speed: 10
   _health: 2
   _deathSound: {fileID: 8300000, guid: 2b257bb29874b6843b6aae85217ee2ba, type: 3}
-  _enemyAnimatorController: {fileID: 9100000, guid: 7d4b95ed0c141d44a91b336160e79e34, type: 2}
-  _playerAnimatorController: {fileID: 9100000, guid: b1c35e448a26ec743a86f99e10e6fad4, type: 2}
 --- !u!95 &3410828369371743399
 Animator:
   serializedVersion: 7
@@ -119,7 +117,7 @@ Animator:
   m_GameObject: {fileID: 2464503704366846959}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1c35e448a26ec743a86f99e10e6fad4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7d4b95ed0c141d44a91b336160e79e34, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -441,6 +441,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _timeBetweenUnits: 0.5
+  _playerMoney: {fileID: 0}
+  _enemyMoney: {fileID: 0}
 --- !u!1001 &333381535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,8 +1166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSpawner
   _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
-  _unit: {fileID: 6097926426704962104, guid: e6a66ba5b05702b40a2001c5830f0638, type: 3}
-  _enemySprite: {fileID: 219734635211318249, guid: 172636253ce30a94ca69546634e6aeed, type: 3}
+  _playerUnit: {fileID: 6097926426704962104, guid: e6a66ba5b05702b40a2001c5830f0638, type: 3}
+  _enemyUnit: {fileID: 6097926426704962104, guid: c5136b5448aafb147ad5a9a8a7e01409, type: 3}
 --- !u!114 &1243401215 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
