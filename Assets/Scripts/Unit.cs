@@ -9,18 +9,23 @@ public class Unit : MonoBehaviour
     private Queue<Vector2> _checkPoints;
     private Vector2 _target;
     private bool _isFinished;
+    private Animator _anim;
     public Team Team { get; set; }
 
     [SerializeField] private float _speed = 10f;
     [SerializeField] private int _health = 1;
     [SerializeField] private AudioClip _deathSound;
-
+    
     public delegate void OnFinished(Unit finished);
     public static OnFinished onFinished;
 
     public delegate void OnDeath(Unit dying);
     public static OnDeath onDeath;
-    
+
+    private void Start()
+    {
+        _anim = GetComponent<Animator>();
+    }
 
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
