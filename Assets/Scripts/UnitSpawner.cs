@@ -3,6 +3,7 @@ using System.Linq;
 using Model;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Grid = Model.Grid;
 
 public class UnitSpawner : MonoBehaviour
@@ -14,9 +15,8 @@ public class UnitSpawner : MonoBehaviour
 
     [SerializeField] private Shop _shop;
     
-    [SerializeField] private Unit _unit;
-
-    [SerializeField] private Sprite _enemySprite;
+    [FormerlySerializedAs("_unit")] [SerializeField] private Unit _playerUnit;
+    [SerializeField] private Unit _enemyUnit;
 
     public void SetGrid(Grid grid)
     {
@@ -40,13 +40,19 @@ public class UnitSpawner : MonoBehaviour
     
     private void SpawnUnit(Team team)
     {
-        var unit = 
-            Instantiate(_unit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
-        unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
-        unit.Team = team;
-        if (unit.Team == Team.Enemy)
+        Unit unit;
+            
+        if (team == Team.Enemy)
         {
-            unit.gameObject.GetComponent<SpriteRenderer>().sprite = _enemySprite;
+            unit = Instantiate(_enemyUnit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
+            unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
+            unit.Team = team;
+        }
+        else
+        {
+            unit = Instantiate(_playerUnit, _grid.GetStartingCheckPoint(team).ToVector2(), Quaternion.identity);
+            unit.SetCheckPoints(_grid.GetCheckPoints(team).Select(cell => cell.ToVector2()).ToArray());
+            unit.Team = team;
         }
         unit.gameObject.SetActive(false);
         onUnitSpawned?.Invoke(unit, team);
