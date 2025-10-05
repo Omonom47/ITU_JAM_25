@@ -52,6 +52,10 @@ public class Unit : MonoBehaviour
             else
             {
                 _target = _checkPoints.Dequeue();
+                while (Random.value < 0.2f && _checkPoints.Count > 0)
+                {
+                    _target = _checkPoints.Dequeue();
+                }
             }
         }
     }

@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-
     struct EnemyTurn
     {
-        public int NumUnitsToSpawn , NumTowersToPlace;
-        
+        public int NumUnitsToSpawn, NumTowersToPlace;
     }
 
     [SerializeField] private int _unitPlacementMultiplier = 2;
@@ -23,10 +21,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _startPlacingTowersEveryTurn = 9;
     private TurnManager _turnManager;
     [SerializeField] private Shop _shop;
-    
+
     public delegate void OnPlacedTower(Vector2 pos);
+
     public static OnPlacedTower placedTower;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -39,7 +38,7 @@ public class EnemyController : MonoBehaviour
         var turn = GenerateTurn();
         StartCoroutine(PerformTurn(turn));
     }
-    
+
     private EnemyTurn GenerateTurn()
     {
         var ret = new EnemyTurn();
@@ -47,7 +46,7 @@ public class EnemyController : MonoBehaviour
         var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 0;
         if (shouldAttack)
         {
-            ret.NumUnitsToSpawn = 
+            ret.NumUnitsToSpawn =
                 Random.Range(turnNum * _unitPlacementMultiplier,
                     turnNum * turnNum * _unitPlacementMultiplier) + 2;
         }
@@ -82,14 +81,13 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < turn.NumTowersToPlace; i++)
         {
             if (!_shop.TryBuyTower(Team.Enemy)) break;
-            
+
             if (_turnManager.TurnNumber >= 5)
             {
                 var xPos = Random.Range(-5, 20);
                 var yPos = Random.Range(-7, 9);
                 Vector2 pos = new Vector2(xPos, yPos);
                 placedTower?.Invoke(pos);
-                
             }
             else
             {
@@ -98,11 +96,11 @@ public class EnemyController : MonoBehaviour
                 Vector2 pos = new Vector2(xPos, yPos);
                 placedTower?.Invoke(pos);
             }
+
             yield return new WaitForSeconds(1f);
         }
+
         yield return new WaitForSeconds(1f);
         _readyButton.onClick.Invoke();
     }
-
-    
 }
