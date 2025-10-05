@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour
             Vector2 pos;
             if (_turnManager.TurnNumber >= 5)
             {
-                var xPos = Random.Range(-5, 20);
+                var xPos = Random.Range(-10, 12);
                 var yPos = Random.Range(-7, 9);
                 pos = new Vector2(xPos, yPos);
                 placedTower?.Invoke(pos);
