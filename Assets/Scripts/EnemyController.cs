@@ -1,4 +1,6 @@
 using System.Collections;
+using Model;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +22,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _startAttackingEveryTurn = 6;
     [SerializeField] private int _startPlacingTowersEveryTurn = 9;
     private TurnManager _turnManager;
-
+    [SerializeField] private Shop _shop;
+    
     public delegate void OnPlacedTower(Vector2 pos);
     public static OnPlacedTower placedTower;
     
@@ -78,6 +81,7 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < turn.NumTowersToPlace; i++)
         {
+            if (!_shop.TryBuyTower(Team.Enemy)) break;
             
             if (_turnManager.TurnNumber >= 5)
             {

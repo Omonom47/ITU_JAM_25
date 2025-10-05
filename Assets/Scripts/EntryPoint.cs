@@ -12,6 +12,13 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private Transform[] _checkPoints;
 
+    [SerializeField] private int _startingMoney = 100;
+    
+    [SerializeField] private IntVariable _playerMoney;
+    [SerializeField] private IntVariable _enemyMoney;
+    
+    
+
 
     private void Awake()
     {
@@ -23,6 +30,8 @@ public class EntryPoint : MonoBehaviour
         }
         _unitSpawner.SetGrid(grid);
         _towerPlacement.SetGrid(grid);
+        _playerMoney.Value = _startingMoney;
+        _enemyMoney.Value = _startingMoney;
     }
 
     private void Start()
