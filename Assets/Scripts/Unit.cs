@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Model;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Unit : MonoBehaviour
 {
@@ -12,19 +13,14 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private float _speed = 10f;
     [SerializeField] private int _health = 1;
+    [SerializeField] private AudioClip _deathSound;
 
-    private AudioSource _audioSource;
-    
     public delegate void OnFinished(Unit finished);
     public static OnFinished onFinished;
 
     public delegate void OnDeath(Unit dying);
     public static OnDeath onDeath;
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    
 
     // Call when spawned
     public void SetCheckPoints(Vector2[] checkPoints)
@@ -64,8 +60,23 @@ public class Unit : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            _audioSource.PlayOneShot(_audioSource.clip);
+
+            var pitch = Random.Range(0.9f, 1.1f);
+            PlayClipAt(_deathSound, transform.position, pitch, 1);
             onDeath?.Invoke(this);
         }
+    }
+
+    private AudioSource PlayClipAt(AudioClip clip, Vector3 position, float pitch, float volume)
+    {
+        var tempGo = new GameObject("tempAudio");
+        tempGo.transform.position = position;
+        var aSource = tempGo.AddComponent<AudioSource>();
+        aSource.clip = clip;
+        aSource.pitch = pitch;
+        aSource.volume = volume;
+        aSource.Play();
+        Destroy(tempGo,clip.length);
+        return aSource;
     }
 }

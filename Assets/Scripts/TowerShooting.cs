@@ -1,6 +1,7 @@
 using System;
 using Model;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TowerShooting: MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class TowerShooting: MonoBehaviour
             _currentTarget.TakeDamage(1);
             _currentTarget = null;
             _cooldownLeft = _shotCooldown;
+            _audio.pitch = Random.Range(0.95f, 1.1f);
             _audio.PlayOneShot(_audio.clip);
         }
     }
