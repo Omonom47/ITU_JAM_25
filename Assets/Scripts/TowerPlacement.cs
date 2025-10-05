@@ -9,9 +9,10 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     [SerializeField] private TowerShooting towerPrefab;
     [SerializeField] private Sprite _enemyTowerSprite;
     [SerializeField] private Shop _shop;
-    
+    [SerializeField] private GameObject _gridSquareHighlighter;
     private InputSystem_Actions _inputSystemActions;
     private Model.Grid _grid;
+    
 
     private Vector2 _mousePosition;
     private bool _canPlace;
@@ -30,8 +31,14 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         EnemyController.placedTower -= EnemyPlaceTower;
     }
 
-    public void OnLook(InputAction.CallbackContext context) => 
+    public void OnLook(InputAction.CallbackContext context)
+    {
         _mousePosition = context.action.ReadValue<Vector2>();
+        Vector2 inWorld =Camera.main.ScreenToWorldPoint(_mousePosition);
+        var cell = inWorld.ToCell();
+        _gridSquareHighlighter.transform.position = cell.ToVector2();
+    } 
+        
 
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -48,6 +55,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
             tower.SetTeam(Team.Player);
             _canPlace = false;
+            _gridSquareHighlighter.SetActive(false);
         }
     }
 
@@ -59,6 +67,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void EnableTowerPlacement()
     {
         _canPlace = true;
+        _gridSquareHighlighter.SetActive(true);
     }
     
     public void EnemyPlaceTower(Vector2 pos)
