@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Button _readyButton;
     [SerializeField] private int _startAttackingEveryTurn = 6;
     [SerializeField] private int _startPlacingTowersEveryTurn = 9;
-    private TurnManager _turnManager;
+    [SerializeField] private TurnManager _turnManager;
     [SerializeField] private Shop _shop;
 
     public delegate void OnPlacedTower(Vector2 pos);
@@ -29,7 +29,6 @@ public class EnemyController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _turnManager = GameObject.FindWithTag("EntryPoint").GetComponent<TurnManager>();
         _turnManager.SetEnemyController(this);
     }
 
@@ -43,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         var ret = new EnemyTurn();
         var turnNum = _turnManager.TurnNumber;
-        var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 0;
+        var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 1;
         if (shouldAttack)
         {
             ret.NumUnitsToSpawn =
@@ -55,7 +54,7 @@ public class EnemyController : MonoBehaviour
             ret.NumUnitsToSpawn = 0;
         }
 
-        var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 1;
+        var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 0;
 
         if (shouldPlaceTowers)
         {

@@ -21,6 +21,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private IntVariable _playerHealth;
     [SerializeField] private IntVariable _enemyHealth;
 
+    [SerializeField] private IntVariable _playerUnitsQueuedUp;
+    [SerializeField] private IntVariable _enemyUnitsQueuedUp;
 
     private void Awake()
     {
@@ -36,6 +38,8 @@ public class EntryPoint : MonoBehaviour
         _enemyMoney.Value = _startingMoney;
         _playerHealth.Value = _startingHealth;
         _enemyHealth.Value = _startingHealth;
+        _playerUnitsQueuedUp.Value = 0;
+        _enemyUnitsQueuedUp.Value = 0;
     }
 
     private void Start()
