@@ -17,10 +17,13 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private IntVariable _enemyMoney;
     [SerializeField] private IntVariable _playerUnitsQueuedUp;
     [SerializeField] private IntVariable _enemyUnitsQueuedUp;
+    [SerializeField] private AudioClip _fightMusic;
+    [SerializeField] private AudioClip _prepMusic;
     
     private bool _playerReady = false;
     private bool _enemyReady = false;
     private EnemyController _enemyController;
+    private AudioSource _audio;
 
     private static readonly List<Unit> _playerUnits = new();
     private static readonly List<Unit> _enemyUnits = new();
@@ -30,6 +33,11 @@ public class TurnManager : MonoBehaviour
 
     public int TurnNumber { get; private set; }
     public TurnPhase Phase { get; private set; }
+
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
@@ -101,11 +109,19 @@ public class TurnManager : MonoBehaviour
     {
         StartCoroutine(ReleaseUnits());
         Phase = TurnPhase.Simulation;
+        _audio.Stop();
+        _audio.clip = _fightMusic;
+        _audio.volume = 1.0f;
+        _audio.Play();
     }
 
     private void NextTurn()
     {
         StopAllCoroutines();
+        _audio.Stop();
+        _audio.clip = _prepMusic;
+        _audio.volume = 0.5f;
+        _audio.Play();
         TurnNumber++;
         Phase = TurnPhase.Prep;
         _playerMoney.Value += 100;
