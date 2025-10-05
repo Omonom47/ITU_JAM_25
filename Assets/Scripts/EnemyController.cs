@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using Model;
 using ScriptableObjects;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _cursorSpeed = 1f;
     [SerializeField] private GameObject _cursorObject;
     [SerializeField] private Button _unitButton;
+    [SerializeField] private Button _towerButton;
     [SerializeField] private Button _readyButton;
     [SerializeField] private int _startAttackingEveryTurn = 6;
     [SerializeField] private int _startPlacingTowersEveryTurn = 9;
@@ -35,7 +37,7 @@ public class EnemyController : MonoBehaviour
     public void StartEnemyTurn()
     {
         var turn = GenerateTurn();
-        StartCoroutine(PerformTurn(turn));
+        PerformTurn(turn);
     }
 
     private EnemyTurn GenerateTurn()
@@ -69,37 +71,57 @@ public class EnemyController : MonoBehaviour
         return ret;
     }
 
-    private IEnumerator PerformTurn(EnemyTurn turn)
+    private async void PerformTurn(EnemyTurn turn)
     {
         for (int i = 0; i < turn.NumUnitsToSpawn; i++)
         {
+            var targetPosition = _unitButton.transform.position;
+            await MoveCursor(targetPosition);
+            
             _unitButton.onClick.Invoke();
-            yield return new WaitForSeconds(0.2f);
+            await Awaitable.WaitForSecondsAsync(0.2f);
         }
 
         for (int i = 0; i < turn.NumTowersToPlace; i++)
         {
             if (!_shop.TryBuyTower(Team.Enemy)) break;
 
+            var targetPosition = _towerButton.transform.position;
+            await MoveCursor(targetPosition);
+
+            Vector2 pos;
             if (_turnManager.TurnNumber >= 5)
             {
-                var xPos = Random.Range(-5, 20);
+                var xPos = Random.Range(-10, 12);
                 var yPos = Random.Range(-7, 9);
-                Vector2 pos = new Vector2(xPos, yPos);
+                pos = new Vector2(xPos, yPos);
                 placedTower?.Invoke(pos);
             }
             else
             {
                 var xPos = Random.Range(1, 20);
                 var yPos = Random.Range(-5, 6);
-                Vector2 pos = new Vector2(xPos, yPos);
-                placedTower?.Invoke(pos);
+                pos = new Vector2(xPos, yPos);
             }
 
-            yield return new WaitForSeconds(1f);
+            await MoveCursor(pos);
+            placedTower?.Invoke(pos);
+
+            await Awaitable.WaitForSecondsAsync(1f);
         }
 
-        yield return new WaitForSeconds(1f);
+        await Awaitable.WaitForSecondsAsync(1f);
+        await MoveCursor(_readyButton.transform.position);
         _readyButton.onClick.Invoke();
+    }
+
+    private async Task MoveCursor(Vector3 targetPosition)
+    {
+        while (Vector3.Distance(_cursorObject.transform.position, targetPosition) > 0.1f)
+        {
+            _cursorObject.transform.position =
+                Vector3.MoveTowards(_cursorObject.transform.position, targetPosition, Time.deltaTime * 150f);
+            await Awaitable.NextFrameAsync();
+        }
     }
 }

@@ -53,6 +53,25 @@ public class TurnManager : MonoBehaviour
         Unit.onFinished -= DeregisterUnit;
     }
 
+    private void Start()
+    {
+        RunTurnTimer();
+    }
+
+    private async void RunTurnTimer()
+    {
+        while (true)
+        {
+            await Awaitable.WaitForSecondsAsync(10f);
+            if (_playerUnits.Count == 0 && _enemyUnits.Count == 0 &&
+                _playerUnitsQueuedUp.Value == 0 && _enemyUnitsQueuedUp.Value == 0 &&
+                Phase == TurnPhase.Simulation)
+            {
+                NextTurn();
+            }
+        }
+    }
+
     public void RegisterPlayerReady()
     {
         if (Phase == TurnPhase.Prep)
