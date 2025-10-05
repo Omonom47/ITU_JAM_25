@@ -2,11 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Model;
+using ScriptableObjects;
 
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     [SerializeField] private TowerShooting towerPrefab;
     [SerializeField] private Sprite _enemyTowerSprite;
+    [SerializeField] private Shop _shop;
     
     private InputSystem_Actions _inputSystemActions;
     private Model.Grid _grid;
@@ -33,6 +35,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (!_shop.TryBuyTower(Team.Player)) return;
         
         if (context.action.WasPressedThisFrame() && _canPlace)
         {
