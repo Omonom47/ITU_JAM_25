@@ -35,7 +35,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!_shop.TryBuyTower(Team.Player)) return;
+        // if (!_shop.TryBuyTower(Team.Player)) return;
         
         if (context.action.WasPressedThisFrame() && _canPlace)
         {
@@ -46,6 +46,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
             tower.SetTeam(Team.Player);
             _canPlace = false;
+            print("Tower placed");
         }
     }
 

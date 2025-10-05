@@ -317,6 +317,9 @@ MonoBehaviour:
   - {fileID: 2065495663}
   - {fileID: 1345703694}
   - {fileID: 1530923988}
+  _startingMoney: 100
+  _playerMoney: {fileID: 11400000, guid: 6ba0ad83584bffb4f865e716f3181e16, type: 2}
+  _enemyMoney: {fileID: 11400000, guid: 71a252a2f01b16d49b53cf06ad59f58a, type: 2}
 --- !u!114 &323930712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1012,7 @@ MonoBehaviour:
   _readyButton: {fileID: 52922224}
   _startAttackingEveryTurn: 6
   _startPlacingTowersEveryTurn: 9
+  _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
 --- !u!4 &1298447643
 Transform:
   m_ObjectHideFlags: 0
@@ -1101,6 +1105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerPlacement
   towerPrefab: {fileID: -1451714407708282309, guid: 222d4c841e9c21142bb99378a1d6cff2, type: 3}
   _enemyTowerSprite: {fileID: 21300000, guid: 868eaee26dc7bdb4e9b0f34b57b7ece6, type: 3}
+  _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
 --- !u!1 &1345703693
 GameObject:
   m_ObjectHideFlags: 0
