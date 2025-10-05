@@ -11,6 +11,8 @@ public class TurnManager : MonoBehaviour
         Prep,Simulation
     }
     [SerializeField] private float _timeBetweenUnits = 0.5f;
+    [SerializeField] private IntVariable _playerMoney;
+    [SerializeField] private IntVariable _enemyMoney;
     
     private bool _playerReady = false;
     private bool _enemyReady = false;
@@ -97,6 +99,8 @@ public class TurnManager : MonoBehaviour
         StopAllCoroutines();
         TurnNumber++;
         Phase = TurnPhase.Prep;
+        _playerMoney.Value += 100;
+        _enemyMoney.Value += 100;
         _enemyController.StartEnemyTurn();
     }
     
