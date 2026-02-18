@@ -11,7 +11,12 @@ namespace ScriptableObjects
 
         [SerializeField] private IntVariable _playerMoney;
         [SerializeField] private IntVariable _enemyMoney;
-        
+
+        public bool CanBuyUnit(Team team)
+        {
+            var money = team == Team.Player ? _playerMoney : _enemyMoney;
+            return money.Value >= _unitCost;
+        }
         
         public bool TryBuyUnit(Team team)
         {

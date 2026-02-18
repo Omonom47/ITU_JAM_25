@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Threading.Tasks;
 using Model;
 using ScriptableObjects;
@@ -10,6 +9,7 @@ public class EnemyController : MonoBehaviour
     struct EnemyTurn
     {
         public int NumUnitsToSpawn, NumTowersToPlace;
+        public Vector2[] TowerPositions;
     }
 
     [SerializeField] private int _unitPlacementMultiplier = 2;
@@ -60,8 +60,29 @@ public class EnemyController : MonoBehaviour
 
         if (shouldPlaceTowers)
         {
-            ret.NumTowersToPlace = Random.Range(turnNum + _towerPlacementModifier,
-                turnNum + _towerPlacementModifier * 2);
+            var numTowers = Random.Range(turnNum + _towerPlacementModifier,
+                                turnNum + _towerPlacementModifier * 2);
+            ret.NumTowersToPlace = numTowers;
+            ret.TowerPositions = new Vector2[numTowers];
+            
+            for (int i = 0; i < numTowers; i++)
+            {
+                Vector2 pos;
+                if (turnNum >= 5)
+                {
+                    var xPos = Random.Range(-10, 12);
+                    var yPos = Random.Range(-7, 9);
+                    pos = new Vector2(xPos, yPos);
+                }
+                else
+                {
+                    var xPos = Random.Range(1, 20);
+                    var yPos = Random.Range(-5, 6);
+                    pos = new Vector2(xPos, yPos);
+                }
+
+                ret.TowerPositions[i] = pos;
+            }
         }
         else
         {
@@ -75,6 +96,8 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < turn.NumUnitsToSpawn; i++)
         {
+            if (!_shop.CanBuyUnit(Team.Enemy)) break;
+            
             var targetPosition = _unitButton.transform.position;
             await MoveCursor(targetPosition);
             
@@ -89,21 +112,8 @@ public class EnemyController : MonoBehaviour
             var targetPosition = _towerButton.transform.position;
             await MoveCursor(targetPosition);
 
-            Vector2 pos;
-            if (_turnManager.TurnNumber >= 5)
-            {
-                var xPos = Random.Range(-10, 12);
-                var yPos = Random.Range(-7, 9);
-                pos = new Vector2(xPos, yPos);
-                placedTower?.Invoke(pos);
-            }
-            else
-            {
-                var xPos = Random.Range(1, 20);
-                var yPos = Random.Range(-5, 6);
-                pos = new Vector2(xPos, yPos);
-            }
 
+            var pos = turn.TowerPositions[i];
             await MoveCursor(pos);
             placedTower?.Invoke(pos);
 
