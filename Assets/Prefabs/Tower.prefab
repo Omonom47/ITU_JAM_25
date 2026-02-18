@@ -68,6 +68,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9195549445034678900
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,6 +114,7 @@ SpriteRenderer:
   m_SortingLayerID: -642642473
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a0647b878d9829042a26073fd4041f70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,7 +124,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-1451714407708282309
 MonoBehaviour:
@@ -136,11 +137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8484f64131e1c34489c4060fec0ca03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerShooting
-  _attackRange: 2
+  _attackRange: 3
   _shotCooldown: 0.5
   _projectilePrefab: {fileID: 9165949133340084909, guid: 799977aa8d841314f9b7196be62da6a4, type: 3}
   _projectileSpeed: 10
   _firePoint: {fileID: 3292900720099228183}
+  _damage: 1
 --- !u!82 &47903584804179842
 AudioSource:
   m_ObjectHideFlags: 0
