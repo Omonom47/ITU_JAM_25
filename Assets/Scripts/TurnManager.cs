@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Model;
@@ -88,6 +87,7 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator ReleaseUnits()
     {
+        var waitTime = Random.Range(0.05f, _timeBetweenUnits);
         if (_enemyWave.TryDequeue(out var eUnit))
         {
             eUnit.gameObject.SetActive(true);
@@ -101,7 +101,7 @@ public class TurnManager : MonoBehaviour
             _playerUnitsQueuedUp.Value--;
         }
 
-        yield return new WaitForSeconds(_timeBetweenUnits);
+        yield return new WaitForSeconds(waitTime);
         StartCoroutine(ReleaseUnits());
     }
 

@@ -10,7 +10,7 @@ public class TowerShooting : MonoBehaviour
     [SerializeField] private GameObject _projectilePrefab;   
     [SerializeField] private float _projectileSpeed = 10f;   
     [SerializeField] private Transform _firePoint;           
-
+    [SerializeField] private int _damage = 1;
     private Unit _currentTarget;
     private float _cooldownLeft;
     private Team _team;
@@ -76,7 +76,7 @@ public class TowerShooting : MonoBehaviour
 
             if (Vector3.Distance(projectile.transform.position, target.transform.position) < 0.1f)
             {
-                target.TakeDamage(1);
+                target.TakeDamage(_damage);
                 Destroy(projectile);
                 yield break;
             }
