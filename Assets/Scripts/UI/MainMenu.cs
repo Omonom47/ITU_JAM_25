@@ -7,7 +7,7 @@ namespace UI
     {
         public void Play()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Scenes/RemakeUI");
         }
 
         public void Quit()
