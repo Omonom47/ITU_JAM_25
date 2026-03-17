@@ -7,9 +7,9 @@ public class TowerShooting : MonoBehaviour
 {
     [SerializeField] private float _attackRange = 5;
     [SerializeField] private float _shotCooldown = 0.5f;
-    [SerializeField] private GameObject _projectilePrefab;   
-    [SerializeField] private float _projectileSpeed = 10f;   
-    [SerializeField] private Transform _firePoint;           
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private float _projectileSpeed = 10f;
+    [SerializeField] private Transform _firePoint;
     [SerializeField] private int _damage = 1;
     private Unit _currentTarget;
     private float _cooldownLeft;
@@ -35,6 +35,8 @@ public class TowerShooting : MonoBehaviour
 
             foreach (var unit in units)
             {
+                if (!unit.gameObject.activeSelf) continue;
+                
                 var dist = (selfPosition - unit.transform.position).sqrMagnitude;
                 if (dist <= _atkRangeSqr)
                 {
@@ -61,7 +63,7 @@ public class TowerShooting : MonoBehaviour
 
         Vector3 spawnPos = _firePoint ? _firePoint.position : transform.position;
         GameObject proj = Instantiate(_projectilePrefab, spawnPos, Quaternion.identity);
-        
+
         StartCoroutine(MoveProjectile(proj, target));
     }
 
