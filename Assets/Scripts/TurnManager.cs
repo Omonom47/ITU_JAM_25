@@ -18,6 +18,10 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private IntVariable _enemyUnitsQueuedUp;
     [SerializeField] private AudioClip _fightMusic;
     [SerializeField] private AudioClip _prepMusic;
+    [Header("Economy")]
+    [SerializeField] private int _baseMoneyPerRound = 100;
+    [SerializeField] [Range(0.1f, float.MaxValue)]
+    private float _turnsToIncreaseMoneyGain = 5f;
     
     private bool _playerReady = false;
     private bool _enemyReady = false;
@@ -139,8 +143,11 @@ public class TurnManager : MonoBehaviour
         _audio.Play();
         TurnNumber++;
         Phase = TurnPhase.Prep;
-        _playerMoney.Value += 100;
-        _enemyMoney.Value += 100;
+
+        var money = _baseMoneyPerRound * (1 + Mathf.FloorToInt(TurnNumber / _turnsToIncreaseMoneyGain));
+        
+        _playerMoney.Value += money;
+        _enemyMoney.Value += money;
         _enemyController.StartEnemyTurn();
     }
 

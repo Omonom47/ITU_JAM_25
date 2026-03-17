@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerShooting
   _attackRange: 3
-  _shotCooldown: 0.5
+  _shotCooldown: 0.3
   _projectilePrefab: {fileID: 9165949133340084909, guid: 799977aa8d841314f9b7196be62da6a4, type: 3}
   _projectileSpeed: 10
   _firePoint: {fileID: 3292900720099228183}
