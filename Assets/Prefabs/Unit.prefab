@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fbd2651f128684795396643c4a9e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  _speed: 10
-  _health: 3
+  _speed: 6
+  _health: 5
   _deathSound: {fileID: 8300000, guid: 2b257bb29874b6843b6aae85217ee2ba, type: 3}
 --- !u!95 &3410828369371743399
 Animator:

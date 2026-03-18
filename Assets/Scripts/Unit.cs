@@ -46,7 +46,7 @@ public class Unit : MonoBehaviour
         if (_isFinished) return;
         
         transform.position =
-            Vector2.MoveTowards(transform.position, _target, Time.deltaTime * 5f);
+            Vector2.MoveTowards(transform.position, _target, Time.deltaTime * _speed);
         if (Vector2.Distance(transform.position, _target) < .01f)
         {
             if (_checkPoints.Count == 0)
@@ -57,7 +57,7 @@ public class Unit : MonoBehaviour
             else
             {
                 _target = _checkPoints.Dequeue();
-                while (Random.value < 0.2f && _checkPoints.Count > 0)
+                while (Random.value < 0.1f && _checkPoints.Count > 0)
                 {
                     _target = _checkPoints.Dequeue();
                 }
