@@ -114,19 +114,22 @@ public class EnemyController : MonoBehaviour
             await Awaitable.WaitForSecondsAsync(0.2f);
         }
 
-        foreach (var t in turn.towerPositions)
+        if (turn.towerPositions is not null)
         {
-            if (!_shop.TryBuyTower(Team.Enemy)) break;
+            foreach (var t in turn.towerPositions)
+            {
+                if (!_shop.TryBuyTower(Team.Enemy)) break;
 
-            var targetPosition = _towerButton.transform.position;
-            await MoveCursor(targetPosition);
+                var targetPosition = _towerButton.transform.position;
+                await MoveCursor(targetPosition);
 
 
-            var pos = t;
-            await MoveCursor(pos);
-            PlacedTower?.Invoke(pos);
+                var pos = t;
+                await MoveCursor(pos);
+                PlacedTower?.Invoke(pos);
 
-            await Awaitable.WaitForSecondsAsync(1f);
+                await Awaitable.WaitForSecondsAsync(1f);
+            }
         }
 
         await Awaitable.WaitForSecondsAsync(1f);
