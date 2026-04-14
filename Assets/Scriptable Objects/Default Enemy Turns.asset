@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276b433e9d3f4491a7df979c71cf14aa, type: 3}
   m_Name: Default Enemy Turns
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjects.EnemyTurnSequence
-  turns: []
+  turns:
+  - numUnitsToSpawn: 2
+    towerPositions:
+    - {x: 13, y: 0}
