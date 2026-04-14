@@ -1,15 +1,18 @@
+using System;
 using System.Threading.Tasks;
 using Model;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
-    struct EnemyTurn
+    [Serializable]
+    public struct EnemyTurn
     {
-        public int NumUnitsToSpawn, NumTowersToPlace;
-        public Vector2[] TowerPositions;
+        public int numUnitsToSpawn;
+        public Vector2[] towerPositions;
     }
 
     [SerializeField] private int _unitPlacementMultiplier = 2;
@@ -23,10 +26,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _startPlacingTowersEveryTurn = 9;
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private Shop _shop;
-
+    [SerializeField] private EnemyTurnSequence scriptedTurns;
     public delegate void OnPlacedTower(Vector2 pos);
 
-    public static OnPlacedTower placedTower;
+    public static OnPlacedTower PlacedTower;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -36,7 +39,16 @@ public class EnemyController : MonoBehaviour
 
     public void StartEnemyTurn()
     {
-        var turn = GenerateTurn();
+        var turnNum = _turnManager.TurnNumber;
+        EnemyTurn turn;
+        if (scriptedTurns is not null)
+        {
+            turn = turnNum >= scriptedTurns.turns.Length ? GenerateTurn() : scriptedTurns.turns[turnNum];
+        }
+        else
+        {
+            turn = GenerateTurn();
+        }
         PerformTurn(turn);
     }
 
@@ -47,13 +59,13 @@ public class EnemyController : MonoBehaviour
         var shouldAttack = turnNum >= _startAttackingEveryTurn || turnNum % 2 == 1;
         if (shouldAttack)
         {
-            ret.NumUnitsToSpawn =
+            ret.numUnitsToSpawn =
                 Random.Range(turnNum * _unitPlacementMultiplier,
                     turnNum * turnNum * _unitPlacementMultiplier) + 2;
         }
         else
         {
-            ret.NumUnitsToSpawn = 0;
+            ret.numUnitsToSpawn = 0;
         }
 
         var shouldPlaceTowers = turnNum >= _startPlacingTowersEveryTurn || turnNum % 2 == 0;
@@ -62,8 +74,8 @@ public class EnemyController : MonoBehaviour
         {
             var numTowers = Random.Range(turnNum + _towerPlacementModifier,
                                 turnNum + _towerPlacementModifier * 2);
-            ret.NumTowersToPlace = numTowers;
-            ret.TowerPositions = new Vector2[numTowers];
+            
+            ret.towerPositions = new Vector2[numTowers];
             
             for (int i = 0; i < numTowers; i++)
             {
@@ -81,20 +93,17 @@ public class EnemyController : MonoBehaviour
                     pos = new Vector2(xPos, yPos);
                 }
 
-                ret.TowerPositions[i] = pos;
+                ret.towerPositions[i] = pos;
             }
         }
-        else
-        {
-            ret.NumTowersToPlace = 0;
-        }
+        
 
         return ret;
     }
 
     private async void PerformTurn(EnemyTurn turn)
     {
-        for (int i = 0; i < turn.NumUnitsToSpawn; i++)
+        for (int i = 0; i < turn.numUnitsToSpawn; i++)
         {
             if (!_shop.CanBuyUnit(Team.Enemy)) break;
             
@@ -105,7 +114,7 @@ public class EnemyController : MonoBehaviour
             await Awaitable.WaitForSecondsAsync(0.2f);
         }
 
-        for (int i = 0; i < turn.NumTowersToPlace; i++)
+        foreach (var t in turn.towerPositions)
         {
             if (!_shop.TryBuyTower(Team.Enemy)) break;
 
@@ -113,9 +122,9 @@ public class EnemyController : MonoBehaviour
             await MoveCursor(targetPosition);
 
 
-            var pos = turn.TowerPositions[i];
+            var pos = t;
             await MoveCursor(pos);
-            placedTower?.Invoke(pos);
+            PlacedTower?.Invoke(pos);
 
             await Awaitable.WaitForSecondsAsync(1f);
         }
@@ -130,7 +139,7 @@ public class EnemyController : MonoBehaviour
         while (Vector3.Distance(_cursorObject.transform.position, targetPosition) > 0.1f)
         {
             _cursorObject.transform.position =
-                Vector3.MoveTowards(_cursorObject.transform.position, targetPosition, Time.deltaTime * 150f);
+                Vector3.MoveTowards(_cursorObject.transform.position, targetPosition, Time.deltaTime * 150f * _cursorSpeed);
             await Awaitable.NextFrameAsync();
         }
     }

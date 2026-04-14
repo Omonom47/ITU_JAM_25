@@ -1,5 +1,5 @@
-using System;
 using Model;
+using ScriptableObjects;
 using UnityEngine;
 
 public class Castle : MonoBehaviour
