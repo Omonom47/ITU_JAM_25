@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Model;
+using ScriptableObjects;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour

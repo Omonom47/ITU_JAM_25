@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Model;
@@ -22,13 +21,13 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         _inputSystemActions = new InputSystem_Actions();
         _inputSystemActions.Player.SetCallbacks(this);
         _inputSystemActions.Player.Enable();
-        EnemyController.placedTower += EnemyPlaceTower;
+        EnemyController.PlacedTower += EnemyPlaceTower;
     }
     
     private void OnDisable()
     {
         _inputSystemActions.Player.Disable();
-        EnemyController.placedTower -= EnemyPlaceTower;
+        EnemyController.PlacedTower -= EnemyPlaceTower;
     }
 
     public void OnLook(InputAction.CallbackContext context)
