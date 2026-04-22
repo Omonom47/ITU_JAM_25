@@ -16,3 +16,8 @@ MonoBehaviour:
   - numUnitsToSpawn: 2
     towerPositions:
     - {x: 13, y: 0}
+    - {x: 5, y: 3}
+  - numUnitsToSpawn: 2
+    towerPositions:
+    - {x: -1, y: 2}
+    - {x: 7, y: -3}
