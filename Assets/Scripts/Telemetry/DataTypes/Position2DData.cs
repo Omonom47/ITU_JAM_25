@@ -12,6 +12,16 @@ namespace Telemetry.DataTypes
             this.position = position;
         }
 
+        public override string GetColumnNames()
+        {
+            return "Position";
+        }
+
+        public override string GetColumnValues()
+        {
+            return this.position.ToString();
+        }
+
         public override void WriteToFile(StreamWriter writer)
         {
             writer.Write(this.position);

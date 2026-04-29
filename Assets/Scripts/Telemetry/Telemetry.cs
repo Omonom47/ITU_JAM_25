@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace Telemetry
@@ -18,90 +19,92 @@ namespace Telemetry
             return instance;
         }
 
-        public static void Reserve(string dataName, MonoBehaviour owner)
+
+        public static void AddToData(string dataName, TelemetryDataBase newData)
         {
-            int ownerHash = owner.gameObject.GetInstanceID();
             int nameHash = dataName.GetHashCode();
 
             Telemetry telemetry = GetInstance();
 
-            if (telemetry.data.ContainsKey(nameHash))
+            if (telemetry.data.TryGetValue(nameHash, out TelemetryData telemetryData))
             {
-                Debug.LogError($"Duplicate telemetry name: {nameHash}", owner);
+                telemetryData.AddData(newData);
                 return;
             }
 
-            TelemetryData telemetryData = new TelemetryData(dataName, ownerHash);
-            telemetry.data.Add(nameHash, telemetryData);
-        }
-
-        public static void AddToData(string dataName, MonoBehaviour owner, TelemetryDataBase newData)
-        {
-            int ownerHash = owner.gameObject.GetInstanceID();
-            int nameHash = dataName.GetHashCode();
-
-            Telemetry telemetry = GetInstance();
-
-            if (!telemetry.data.TryGetValue(nameHash, out TelemetryData telemetryData))
-            {
-                Debug.Log("Couldn't find telemetry data", owner);
-                return;
-            }
-
-            if (!telemetryData.CompareOwner(ownerHash))
-            {
-                Debug.LogError("Owner mismatch", owner);
-                return;
-            }
-
-            telemetryData.AddData(newData);
+            TelemetryData toAdd = new TelemetryData(dataName);
+            toAdd.AddData(newData);
+            telemetry.data.Add(nameHash, toAdd);
         }
 
         public static void SaveDataToFile()
         {
             DateTime time = DateTime.Now;
-            string fileName = $"{time:MM_dd_HH_mm_ss}.txt";
+            string title = $"{time:MM_dd_HH_mm_ss}";
+            string fileName = $"{title}.txt";
             Debug.Log($"File name: {fileName}");
-            string path = Path.Combine(Application.persistentDataPath, fileName);
-            Debug.Log($"Saving data to {path}");
+            string commonFilePath = Path.Combine(Application.persistentDataPath, fileName);
+            Debug.Log($"Saving data to {commonFilePath}");
 
-            if (!File.Exists(path))
-                File.Create(path).Close();
+            if (!File.Exists(commonFilePath))
+                File.Create(commonFilePath).Close();
             else
             {
                 Debug.LogError("File already exists");
                 return;
             }
 
-            StreamWriter writer = new StreamWriter(path, true);
+            if (!Directory.Exists(Path.Combine(Application.persistentDataPath, title)))
+                Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, title));
+
+            StreamWriter commonWriter = new StreamWriter(commonFilePath, true);
 
             Telemetry telemetry = GetInstance();
             foreach (TelemetryData telemetryData in telemetry.data.Values)
-                telemetryData.WriteDataToFile(writer);
+            {
+                try
+                {
+                    telemetryData.WriteDataToCommonFile(commonWriter);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
 
-            writer.Close();
+                string csvFilePath =
+                    Path.Combine(Application.persistentDataPath, title, $"{telemetryData.GetName()}.csv");
+                File.Create(csvFilePath).Close();
+
+                StreamWriter csvWriter = new StreamWriter(csvFilePath, true);
+                try
+                {
+                    telemetryData.WriteToCSVFile(csvWriter);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                csvWriter.Close();
+            }
+
+            commonWriter.Close();
         }
     }
 
     internal readonly struct TelemetryData
     {
         private readonly string name;
-        private readonly int ownerHash;
         private readonly List<TelemetryDataBase> data;
         private readonly List<DateTime> dataTime;
 
-        public TelemetryData(string name, int ownerHash) : this()
+        public TelemetryData(string name) : this()
         {
             this.name = name;
-            this.ownerHash = ownerHash;
             this.data = new List<TelemetryDataBase>();
             this.dataTime = new List<DateTime>();
         }
 
-        public bool CompareOwner(int hash)
-        {
-            return this.ownerHash == hash;
-        }
 
         public void AddData(TelemetryDataBase newData)
         {
@@ -109,7 +112,7 @@ namespace Telemetry
             this.dataTime.Add(DateTime.Now);
         }
 
-        public void WriteDataToFile(StreamWriter writer)
+        public void WriteDataToCommonFile(StreamWriter writer)
         {
             writer.WriteLine(this.name);
             writer.WriteLine("{");
@@ -126,6 +129,27 @@ namespace Telemetry
             }
 
             writer.WriteLine("}");
+        }
+
+        public void WriteToCSVFile(StreamWriter writer)
+        {
+            if (this.data.Count == 0)
+                return;
+
+            StringBuilder sb = new StringBuilder("Time;" + this.data[0].GetColumnNames());
+
+            for (int i = 0; i < this.data.Count; i++)
+            {
+                long time = new DateTimeOffset(this.dataTime[i]).ToUnixTimeMilliseconds();
+                sb.Append('\n').Append(this.dataTime[i].ToString("HH:mm:ss:fff")).Append(";").Append(this.data[i].GetColumnValues());
+            }
+
+            writer.WriteLine(sb.ToString());
+        }
+
+        public string GetName()
+        {
+            return this.name;
         }
     }
 }

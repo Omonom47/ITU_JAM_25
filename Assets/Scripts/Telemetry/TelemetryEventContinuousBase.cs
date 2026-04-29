@@ -4,15 +4,10 @@ namespace Telemetry
 {
     public abstract class TelemetryEventContinuousBase : MonoBehaviour
     {
-        [SerializeField] private string dataName;
         [Min(0.1f)] [SerializeField] private float secondsBetweenEvents = 0.1f;
 
         private float currentTime;
-
-        private void Start()
-        {
-            Telemetry.Reserve(this.dataName, this);
-        }
+        protected abstract string dataName();
 
         private void Update()
         {
@@ -35,7 +30,7 @@ namespace Telemetry
                 return;
             }
 
-            Telemetry.AddToData(this.dataName, this, newData);
+            Telemetry.AddToData(this.dataName(), newData);
         }
 
         protected abstract TelemetryDataBase ProcessEvent();
