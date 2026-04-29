@@ -11,7 +11,6 @@ namespace Telemetry
         {
             TelemetryDataBase newData = this.ProcessEvent();
 
-            Debug.Log(newData);
             if (newData == null)
             {
                 Debug.LogError("Data should not be null.");

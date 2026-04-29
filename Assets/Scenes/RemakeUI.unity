@@ -331,7 +331,6 @@ GameObject:
   - component: {fileID: 142727110}
   - component: {fileID: 142727112}
   - component: {fileID: 142727111}
-  - component: {fileID: 142727113}
   m_Layer: 5
   m_Name: EnemyCursor
   m_TagString: Untagged
@@ -396,19 +395,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142727109}
   m_CullTransparentMesh: 1
---- !u!114 &142727113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142727109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6019bc169f92c84490736d0df2e2ea5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.MouseCursorEvent
-  secondsBetweenEvents: 0.1
 --- !u!114 &216103347 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
@@ -569,6 +555,8 @@ GameObject:
   - component: {fileID: 323930711}
   - component: {fileID: 323930712}
   - component: {fileID: 323930713}
+  - component: {fileID: 323930715}
+  - component: {fileID: 323930714}
   m_Layer: 0
   m_Name: Entry Point
   m_TagString: EntryPoint
@@ -650,6 +638,7 @@ MonoBehaviour:
   _prepMusic: {fileID: 8300000, guid: 5dcc65a616e68f74688c0cf2f349b10e, type: 3}
   _baseMoneyPerRound: 100
   _turnsToIncreaseMoneyGain: 5
+  turnEndEvent: {fileID: 323930714}
 --- !u!82 &323930713
 AudioSource:
   m_ObjectHideFlags: 0
@@ -747,6 +736,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &323930714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323930709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76579a28d4bb2449b82dc0deab330e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.TurnEndEvent
+  turnManager: {fileID: 323930712}
+  playerHealth: {fileID: 11400000, guid: f9f844494e504f1418c0159313430ee4, type: 2}
+  enemyHealth: {fileID: 11400000, guid: 428423c0118343644930ed7908733bbd, type: 2}
+--- !u!114 &323930715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323930709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6019bc169f92c84490736d0df2e2ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.MouseCursorEvent
+  secondsBetweenEvents: 0.25
 --- !u!1001 &333381535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2045,6 +2062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337559762}
   - component: {fileID: 1337559763}
+  - component: {fileID: 1337559764}
   m_Layer: 0
   m_Name: Tower Placement
   m_TagString: Untagged
@@ -2084,7 +2102,21 @@ MonoBehaviour:
   _enemyTowerSprite: {fileID: 21300000, guid: 868eaee26dc7bdb4e9b0f34b57b7ece6, type: 3}
   _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
   _gridSquareHighlighter: {fileID: 135189821}
-  towerEvent: {fileID: 0}
+  towerEvent: {fileID: 1337559764}
+--- !u!114 &1337559764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337559761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3266994775a35848847464edcc9791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.TowerEvent
+  turnManager: {fileID: 323930712}
+  tower: {fileID: 1337559763}
 --- !u!1 &1345703693
 GameObject:
   m_ObjectHideFlags: 0

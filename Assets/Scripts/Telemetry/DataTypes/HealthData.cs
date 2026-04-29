@@ -15,12 +15,12 @@ namespace Telemetry.DataTypes
 
         public override string GetColumnNames()
         {
-            return "Turn, Player, Enemy";
+            return "Turn;Player;Enemy";
         }
 
         public override string GetColumnValues()
         {
-            return $"{this.turn}, {this.playerHealth}, {this.enemyHealth}";
+            return $"{this.turn};{this.playerHealth};{this.enemyHealth}";
         }
 
         public override void WriteToFile(StreamWriter writer)

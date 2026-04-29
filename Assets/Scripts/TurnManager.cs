@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Model;
 using ScriptableObjects;
+using Telemetry.Events;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -19,11 +20,11 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private IntVariable _enemyUnitsQueuedUp;
     [SerializeField] private AudioClip _fightMusic;
     [SerializeField] private AudioClip _prepMusic;
-    [Header("Economy")]
-    [SerializeField] private int _baseMoneyPerRound = 100;
+    [Header("Economy")] [SerializeField] private int _baseMoneyPerRound = 100;
+
     [SerializeField] [Range(0.1f, float.MaxValue)]
     private float _turnsToIncreaseMoneyGain = 5f;
-    
+
     private bool _playerReady = false;
     private bool _enemyReady = false;
     private EnemyController _enemyController;
@@ -33,7 +34,10 @@ public class TurnManager : MonoBehaviour
     private static readonly List<Unit> _enemyUnits = new();
 
     private readonly Queue<Unit> _playerWave = new();
+
     private readonly Queue<Unit> _enemyWave = new();
+
+    [SerializeField] private TurnEndEvent turnEndEvent;
 
     public int TurnNumber { get; private set; }
     public TurnPhase Phase { get; private set; }
@@ -142,11 +146,14 @@ public class TurnManager : MonoBehaviour
         _audio.clip = _prepMusic;
         _audio.volume = 0.5f;
         _audio.Play();
+
+        this.turnEndEvent.TriggerEvent();
+
         TurnNumber++;
         Phase = TurnPhase.Prep;
 
         var money = _baseMoneyPerRound * (1 + Mathf.FloorToInt(TurnNumber / _turnsToIncreaseMoneyGain));
-        
+
         _playerMoney.Value += money;
         _enemyMoney.Value += money;
         _enemyController.StartEnemyTurn();
@@ -178,6 +185,7 @@ public class TurnManager : MonoBehaviour
         {
             _enemyUnits.Remove(toDeregister);
         }
+
         Destroy(toDeregister.gameObject);
         if (_playerUnits.Count == 0 && _enemyUnits.Count == 0)
         {

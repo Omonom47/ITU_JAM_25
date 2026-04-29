@@ -7,7 +7,6 @@ namespace Telemetry.Events
     public sealed class TowerEvent : TelemetryEventTriggerBase
     {
         [SerializeField] private TowerPlacement tower;
-        [SerializeField] private TurnManager turnManager;
 
         protected override string dataName()
         {
