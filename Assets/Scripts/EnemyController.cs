@@ -146,4 +146,27 @@ public class EnemyController : MonoBehaviour
             await Awaitable.NextFrameAsync();
         }
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (scriptedTurns is not null)
+        {
+            var color = Color.black;
+            var counter = 0;
+            var lastTurnIndex = scriptedTurns.turns.Length-1;
+            foreach (var turn in scriptedTurns.turns)
+            {
+                foreach (var position in turn.towerPositions)
+                {
+                    var cellPos = position.ToCell();
+                    Gizmos.color = color;
+                    Gizmos.DrawCube(cellPos.ToVector2(),Vector3.one);
+                }
+
+                counter++;
+                color = Color.Lerp(Color.black, Color.white, counter / (float)lastTurnIndex);
+            }
+        }
+    }
+#endif
 }
