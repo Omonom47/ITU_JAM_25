@@ -64,9 +64,11 @@ namespace Model
             return false;
         }
         public bool IsCellOccupiedByTower(Cell cell) => _towerPlacements.Contains(cell);
-
         public bool IsCellOnCenterWall(Cell cell) => cell.X == 0 || cell.X == -1;
-        
+        public bool IsCellOnSide(Cell cell, Team side) => side == Team.Enemy ? cell.X >= 0 : cell.X <= -1;
+        public bool IsCellOnPlayerCastle(Cell cell) => cell.X is >= -20 and <= -18 && cell.Y is >= -1 and <= 1;
+        public bool IsCellOnEnemyCastle(Cell cell) => cell.X is <=19 and >= 17 && cell.Y is >= -1 and <= 1;
+
         public Cell GetStartingCheckPoint(Team team)
         {
             return team == Team.Player ? _checkPoints[0] : _checkPoints[^1];

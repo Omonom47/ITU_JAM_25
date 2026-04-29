@@ -46,7 +46,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(_mousePosition);
             var cell = mouseWorldPos.ToCell();
             
-            if (Mathf.Abs(cell.X) > 19) return;
+            if (cell.X is > 19 or < -20) return;
             if (!_shop.TryBuyTower(Team.Player)) return;
     
             _grid.PlaceTower(cell);
