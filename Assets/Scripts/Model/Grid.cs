@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,29 @@ namespace Model
         Enemy
     }
 
-    public class Cell
+    public class Cell : IEquatable<Cell>
     {
         public int X, Y;
+
+        public bool Equals(Cell other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return X == other.X && Y == other.Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Cell)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
     }
 
     public class Grid
@@ -42,6 +63,9 @@ namespace Model
             }
             return false;
         }
+        public bool IsCellOccupiedByTower(Cell cell) => _towerPlacements.Contains(cell);
+
+        public bool IsCellOnCenterWall(Cell cell) => cell.X == 0 || cell.X == -1;
         
         public Cell GetStartingCheckPoint(Team team)
         {
