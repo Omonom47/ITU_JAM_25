@@ -12,11 +12,17 @@ namespace Telemetry
 
         private readonly Dictionary<int, TelemetryData> data = new Dictionary<int, TelemetryData>();
 
+        private static string fileName = "Empty";
+
         private static Telemetry GetInstance()
         {
             instance ??= new Telemetry();
 
             return instance;
+        }
+
+        public static void SetFileName(string name)
+        {
         }
 
 
@@ -39,11 +45,9 @@ namespace Telemetry
 
         public static void SaveDataToFile()
         {
-            DateTime time = DateTime.Now;
-            string title = $"{time:MM_dd_HH_mm_ss}";
-            string fileName = $"{title}.txt";
-            Debug.Log($"File name: {fileName}");
-            string commonFilePath = Path.Combine(Application.persistentDataPath, fileName);
+            string fileNameWithType = $"{fileName}.txt";
+            Debug.Log($"File name: {fileNameWithType}");
+            string commonFilePath = Path.Combine(Application.persistentDataPath, fileNameWithType);
             Debug.Log($"Saving data to {commonFilePath}");
 
             if (!File.Exists(commonFilePath))
@@ -54,8 +58,8 @@ namespace Telemetry
                 return;
             }
 
-            if (!Directory.Exists(Path.Combine(Application.persistentDataPath, title)))
-                Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, title));
+            if (!Directory.Exists(Path.Combine(Application.persistentDataPath, fileName)))
+                Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, fileName));
 
             StreamWriter commonWriter = new StreamWriter(commonFilePath, true);
 
@@ -72,7 +76,7 @@ namespace Telemetry
                 }
 
                 string csvFilePath =
-                    Path.Combine(Application.persistentDataPath, title, $"{telemetryData.GetName()}.csv");
+                    Path.Combine(Application.persistentDataPath, fileName, $"{telemetryData.GetName()}.csv");
                 File.Create(csvFilePath).Close();
 
                 StreamWriter csvWriter = new StreamWriter(csvFilePath, true);
@@ -141,7 +145,8 @@ namespace Telemetry
             for (int i = 0; i < this.data.Count; i++)
             {
                 long time = new DateTimeOffset(this.dataTime[i]).ToUnixTimeMilliseconds();
-                sb.Append('\n').Append(this.dataTime[i].ToString("HH:mm:ss:fff")).Append(";").Append(this.data[i].GetColumnValues());
+                sb.Append('\n').Append(this.dataTime[i].ToString("HH:mm:ss:fff")).Append(";")
+                    .Append(this.data[i].GetColumnValues());
             }
 
             writer.WriteLine(sb.ToString());
