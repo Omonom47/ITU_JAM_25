@@ -1,6 +1,7 @@
 using Model;
 using Telemetry.DataTypes;
 using UnityEngine;
+using Grid = Model.Grid;
 
 namespace Telemetry.Events
 {
@@ -18,7 +19,13 @@ namespace Telemetry.Events
             //TODO Refactor to use helper functions
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(this.tower.GetMousePosition());
             Cell cell = mouseWorldPos.ToCell();
-            return new TowerData(cell.ToVector2(), false, false, false, false, false);
+            Grid grid = this.tower.GetGrid();
+            return new TowerData(cell.ToVector2(), 
+                grid.IsCellOnPath(cell), 
+                grid.IsCellOccupiedByTower(cell),
+                grid.IsCellOnEnemyCastle(cell),
+                grid.IsCellOnPlayerCastle(cell),
+                grid.IsCellOnCenterWall(cell));
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Telemetry
 
         public static void SetFileName(string name)
         {
+            fileName = name;
         }
 
 
@@ -144,7 +145,6 @@ namespace Telemetry
 
             for (int i = 0; i < this.data.Count; i++)
             {
-                long time = new DateTimeOffset(this.dataTime[i]).ToUnixTimeMilliseconds();
                 sb.Append('\n').Append(this.dataTime[i].ToString("HH:mm:ss:fff")).Append(";")
                     .Append(this.data[i].GetColumnValues());
             }

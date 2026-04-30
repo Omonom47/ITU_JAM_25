@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using Model;
 using ScriptableObjects;
 using Telemetry.Events;
+using Grid = Model.Grid;
 
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
@@ -51,8 +52,8 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             if (cell.X is > 19 or < -20) return;
             if (!_shop.TryBuyTower(Team.Player)) return;
     
-            _grid.PlaceTower(cell);
             this.towerEvent.TriggerEvent();
+            _grid.PlaceTower(cell);
             
             var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
             tower.SetTeam(Team.Player);
@@ -85,5 +86,10 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public Vector2 GetMousePosition()
     {
         return this._mousePosition;
+    }
+
+    public Grid GetGrid()
+    {
+        return this._grid;
     }
 }

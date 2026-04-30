@@ -4,7 +4,6 @@ namespace Telemetry
 {
     public sealed class SetFileName : MonoBehaviour
     {
-        public void SetName(string fileName) =>
-            Telemetry.SetFileName(fileName);
+        public void SetName(string fileName) => Telemetry.SetFileName(fileName);
     }
 }
