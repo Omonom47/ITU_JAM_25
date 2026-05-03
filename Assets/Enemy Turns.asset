@@ -15,18 +15,47 @@ MonoBehaviour:
   turns:
   - numUnitsToSpawn: 1
     towerPositions:
-    - {x: 8, y: 0}
-    - {x: 15, y: 2}
+    - {x: 8, y: -1}
+    - {x: 15, y: 1}
   - numUnitsToSpawn: 4
     towerPositions:
-    - {x: -5, y: -2}
+    - {x: -5, y: -3}
   - numUnitsToSpawn: 0
     towerPositions:
-    - {x: 4, y: 6}
-    - {x: 11, y: -5}
+    - {x: 2, y: 7}
+    - {x: 11, y: -6}
   - numUnitsToSpawn: 10
     towerPositions:
-    - {x: -12, y: -3}
+    - {x: -12, y: -4}
   - numUnitsToSpawn: 5
     towerPositions:
-    - {x: 12, y: -3}
+    - {x: 12, y: -4}
+  - numUnitsToSpawn: 0
+    towerPositions:
+    - {x: 6, y: -4}
+  - numUnitsToSpawn: 38
+    towerPositions: []
+  - numUnitsToSpawn: 5
+    towerPositions:
+    - {x: -16, y: -4}
+  - numUnitsToSpawn: 10
+    towerPositions:
+    - {x: 4, y: 1}
+    - {x: -3, y: 7}
+  - numUnitsToSpawn: 33
+    towerPositions: []
+  - numUnitsToSpawn: 10
+    towerPositions:
+    - {x: -5, y: 2}
+  - numUnitsToSpawn: 20
+    towerPositions:
+    - {x: 15, y: -3}
+  - numUnitsToSpawn: 0
+    towerPositions: []
+  - numUnitsToSpawn: 56
+    towerPositions:
+    - {x: -16, y: 1}
+  - numUnitsToSpawn: 37
+    towerPositions:
+    - {x: 2, y: 3}
+    - {x: -10, y: -6}
