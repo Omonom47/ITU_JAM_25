@@ -629,6 +629,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f2443a98a900a43aedd6c19ee99104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  restartAction:
+    m_Name: Restart
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b82f78ed-ed69-4e18-b639-1a0b06b4b36b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5d029628-c2b9-4b93-b62e-938abbb52eea
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Restart
+      m_Flags: 0
+    m_Flags: 0
   _timeBetweenUnits: 0.5
   _playerMoney: {fileID: 11400000, guid: 6ba0ad83584bffb4f865e716f3181e16, type: 2}
   _enemyMoney: {fileID: 11400000, guid: 71a252a2f01b16d49b53cf06ad59f58a, type: 2}
