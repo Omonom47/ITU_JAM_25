@@ -217,6 +217,7 @@ public class TurnManager : MonoBehaviour
     {
         if (restartAction.WasPressedThisFrame())
         {
+            this.turnEndEvent.TriggerEvent();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
