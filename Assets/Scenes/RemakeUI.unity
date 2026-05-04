@@ -208,7 +208,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
   m_PrefabInstance: {fileID: 1545968782}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1545968783}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
   m_PrefabInstance: {fileID: 1545968782}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1545968784}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -555,6 +555,8 @@ GameObject:
   - component: {fileID: 323930711}
   - component: {fileID: 323930712}
   - component: {fileID: 323930713}
+  - component: {fileID: 323930715}
+  - component: {fileID: 323930714}
   m_Layer: 0
   m_Name: Entry Point
   m_TagString: EntryPoint
@@ -636,6 +638,7 @@ MonoBehaviour:
   _prepMusic: {fileID: 8300000, guid: 5dcc65a616e68f74688c0cf2f349b10e, type: 3}
   _baseMoneyPerRound: 100
   _turnsToIncreaseMoneyGain: 5
+  turnEndEvent: {fileID: 323930714}
 --- !u!82 &323930713
 AudioSource:
   m_ObjectHideFlags: 0
@@ -733,6 +736,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &323930714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323930709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76579a28d4bb2449b82dc0deab330e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.TurnEndEvent
+  turnManager: {fileID: 323930712}
+  playerHealth: {fileID: 11400000, guid: f9f844494e504f1418c0159313430ee4, type: 2}
+  enemyHealth: {fileID: 11400000, guid: 428423c0118343644930ed7908733bbd, type: 2}
+--- !u!114 &323930715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323930709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6019bc169f92c84490736d0df2e2ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.MouseCursorEvent
+  secondsBetweenEvents: 0.25
 --- !u!1001 &333381535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1722,6 +1753,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &993174385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5876545809403522066, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 2265814347357264405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &993174387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993174385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.UI.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: unitPlayer
 --- !u!1 &1171105517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1915,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
   m_PrefabInstance: {fileID: 1545968782}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1545968785}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -1911,6 +1961,7 @@ MonoBehaviour:
   _startPlacingTowersEveryTurn: 9
   _turnManager: {fileID: 323930712}
   _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
+  scriptedTurns: {fileID: 0}
 --- !u!4 &1298447643
 Transform:
   m_ObjectHideFlags: 0
@@ -1957,6 +2008,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1335781800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1335781802}
+  - component: {fileID: 1335781801}
+  m_Layer: 0
+  m_Name: Telemetry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1335781801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335781800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402bbe74ac801f94f8f9ced8029e764a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.TelemetryTriggerSave
+--- !u!4 &1335781802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335781800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1337559761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +2062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337559762}
   - component: {fileID: 1337559763}
+  - component: {fileID: 1337559764}
   m_Layer: 0
   m_Name: Tower Placement
   m_TagString: Untagged
@@ -2006,6 +2102,21 @@ MonoBehaviour:
   _enemyTowerSprite: {fileID: 21300000, guid: 868eaee26dc7bdb4e9b0f34b57b7ece6, type: 3}
   _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
   _gridSquareHighlighter: {fileID: 135189821}
+  towerEvent: {fileID: 1337559764}
+--- !u!114 &1337559764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337559761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3266994775a35848847464edcc9791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.TowerEvent
+  turnManager: {fileID: 323930712}
+  tower: {fileID: 1337559763}
 --- !u!1 &1345703693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,27 +2360,87 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1206992698}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1545968788}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyEnemyUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnitSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Telemetry.Events.UIButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 323930712}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1545968786}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RegisterEnemyReady
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerEvent
       objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TurnManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Telemetry.Events.UIButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3928773040787933747, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
@@ -2302,23 +2473,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1545968787}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BroadcastMessage
+      value: TriggerEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TowerPlacement, Assembly-CSharp
+      value: Telemetry.Events.UIButtonEvent, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2444,13 +2615,79 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5876545809403522066, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1545968788}
     - targetCorrespondingSourceObject: {fileID: 1921183704096277559, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 618939712}
     - targetCorrespondingSourceObject: {fileID: 6825259146717406505, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 586579623}
+    - targetCorrespondingSourceObject: {fileID: 5752656829173627794, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1545968787}
+    - targetCorrespondingSourceObject: {fileID: 6095192569365254827, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1545968786}
   m_SourcePrefab: {fileID: 100100000, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+--- !u!1 &1545968783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6095192569365254827, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 1545968782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1545968784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5752656829173627794, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 1545968782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1545968785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5876545809403522066, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 1545968782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545968786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545968783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: readyEnemy
+--- !u!114 &1545968787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545968784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: towerEnemy
+--- !u!114 &1545968788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545968785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: unityEnemy
 --- !u!1 &1668991315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,21 +3216,113 @@ PrefabInstance:
 '
       objectReference: {fileID: 0}
     - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1206992698}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 993174387}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyPlayerUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnitSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Telemetry.UI.UIButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316392443564575184, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 323930712}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2265814347357264408}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Telemetry.Events.UIButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900497885693109535, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3928773040787933747, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -57
       objectReference: {fileID: 0}
     - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1337559763}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2265814347357264409}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Telemetry.Events.UIButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204660495520134189, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5395517022960289537, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3086,13 +3415,60 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5876545809403522066, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 993174387}
     - targetCorrespondingSourceObject: {fileID: 1921183704096277559, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 499564346}
     - targetCorrespondingSourceObject: {fileID: 6825259146717406505, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2111005626}
+    - targetCorrespondingSourceObject: {fileID: 5752656829173627794, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2265814347357264409}
+    - targetCorrespondingSourceObject: {fileID: 6095192569365254827, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2265814347357264408}
   m_SourcePrefab: {fileID: 100100000, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+--- !u!1 &2265814347357264406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6095192569365254827, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 2265814347357264405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2265814347357264407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5752656829173627794, guid: 1efe76315c2ba6d4083bc1c56c239bd4, type: 3}
+  m_PrefabInstance: {fileID: 2265814347357264405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2265814347357264408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265814347357264406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: readyPlayer
+--- !u!114 &2265814347357264409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265814347357264407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb197a5d1e84012449b6c32d773906ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telemetry.Events.UIButtonEvent
+  turnManager: {fileID: 323930712}
+  id: towerPlayer
 --- !u!1 &2482540891039023120
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,3 +3809,4 @@ SceneRoots:
   - {fileID: 36895616}
   - {fileID: 1673851609}
   - {fileID: 678249046}
+  - {fileID: 1335781802}

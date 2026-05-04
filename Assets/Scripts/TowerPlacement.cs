@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Model;
 using ScriptableObjects;
+using Telemetry.Events;
+using Grid = Model.Grid;
 
 public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
@@ -11,10 +13,11 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     [SerializeField] private GameObject _gridSquareHighlighter;
     private InputSystem_Actions _inputSystemActions;
     private Model.Grid _grid;
-    
 
     private Vector2 _mousePosition;
     private bool _canPlace;
+
+    [SerializeField] private TowerEvent towerEvent;
 
     private void OnEnable()
     {
@@ -49,6 +52,7 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
             if (cell.X is > 19 or < -20) return;
             if (!_shop.TryBuyTower(Team.Player)) return;
     
+            this.towerEvent.TriggerEvent();
             _grid.PlaceTower(cell);
             
             var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
@@ -77,5 +81,15 @@ public class TowerPlacement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         var tower = Instantiate(towerPrefab, cell.ToVector2(), Quaternion.identity);
         tower.GetComponent<SpriteRenderer>().sprite = _enemyTowerSprite;
         tower.SetTeam(Team.Enemy);
+    }
+    
+    public Vector2 GetMousePosition()
+    {
+        return this._mousePosition;
+    }
+
+    public Grid GetGrid()
+    {
+        return this._grid;
     }
 }

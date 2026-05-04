@@ -142,7 +142,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -627,6 +627,34 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Telemetry",
+            "id": "ec4705eb-5d4c-47db-8730-ab71bc67f8ba",
+            "actions": [
+                {
+                    "name": "TriggerSave",
+                    "type": "Button",
+                    "id": "48696bb2-cfd7-4ce0-b39c-b9b62a7ff423",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "169687a9-8ce4-49c3-bf3f-d5f5f9baa417",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerSave",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
