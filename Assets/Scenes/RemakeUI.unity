@@ -1961,7 +1961,7 @@ MonoBehaviour:
   _startPlacingTowersEveryTurn: 9
   _turnManager: {fileID: 323930712}
   _shop: {fileID: 11400000, guid: d4073bf872966bf4db4c600bdc28ec1e, type: 2}
-  scriptedTurns: {fileID: 0}
+  scriptedTurns: {fileID: 11400000, guid: 528c751750dc8e84d98cf2c89e41b033, type: 2}
 --- !u!4 &1298447643
 Transform:
   m_ObjectHideFlags: 0

@@ -4,6 +4,9 @@ using Model;
 using ScriptableObjects;
 using Telemetry.Events;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class TurnManager : MonoBehaviour
 {
@@ -13,6 +16,7 @@ public class TurnManager : MonoBehaviour
         Simulation
     }
 
+    [SerializeField] private InputAction restartAction;
     [SerializeField] private float _timeBetweenUnits = 0.5f;
     [SerializeField] private IntVariable _playerMoney;
     [SerializeField] private IntVariable _enemyMoney;
@@ -20,8 +24,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private IntVariable _enemyUnitsQueuedUp;
     [SerializeField] private AudioClip _fightMusic;
     [SerializeField] private AudioClip _prepMusic;
-    [Header("Economy")] [SerializeField] private int _baseMoneyPerRound = 100;
-
+    
+    [Header("Economy")] 
+    [SerializeField] private int _baseMoneyPerRound = 100;
     [SerializeField] [Range(0.1f, float.MaxValue)]
     private float _turnsToIncreaseMoneyGain = 5f;
 
@@ -44,6 +49,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
+        restartAction.Enable();
         UnitSpawner.onUnitSpawned += RegisterUnit;
         Unit.onDeath += DeregisterUnit;
         Unit.onFinished += DeregisterUnit;
@@ -51,6 +57,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnDisable()
     {
+        restartAction.Disable();
         UnitSpawner.onUnitSpawned -= RegisterUnit;
         Unit.onDeath -= DeregisterUnit;
         Unit.onFinished -= DeregisterUnit;
@@ -204,5 +211,13 @@ public class TurnManager : MonoBehaviour
     public void SetEnemyController(EnemyController ec)
     {
         _enemyController = ec;
+    }
+
+    private void Update()
+    {
+        if (restartAction.WasPressedThisFrame())
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
